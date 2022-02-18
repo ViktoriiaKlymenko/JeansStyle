@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {}
+    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {
+    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
         "projectName": "JeansStyle.BLL",
-        "projectPath": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
+        "projectPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
         "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.BLL\\obj\\",
+        "outputPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",

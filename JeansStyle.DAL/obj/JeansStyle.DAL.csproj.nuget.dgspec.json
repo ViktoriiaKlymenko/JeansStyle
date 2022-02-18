@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {}
+    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
+    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
         "projectName": "JeansStyle.DAL",
-        "projectPath": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
+        "projectPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
         "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle.DAL\\obj\\",
+        "outputPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[5.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.14, )"
             }

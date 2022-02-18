@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle\\JeansStyle.API.csproj": {}
+    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle\\JeansStyle.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle\\JeansStyle.API.csproj": {
+    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle\\JeansStyle.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle\\JeansStyle.API.csproj",
+        "projectUniqueName": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle\\JeansStyle.API.csproj",
         "projectName": "JeansStyle.API",
-        "projectPath": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle\\JeansStyle.API.csproj",
+        "projectPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle\\JeansStyle.API.csproj",
         "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vikto\\OneDrive\\Документы\\1DIPLOMA\\JeansStyle\\obj\\",
+        "outputPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
