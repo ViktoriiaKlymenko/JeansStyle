@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Af27USyfgOMR25OE/gSAJpjYizpLQZtFCu0TsJYt2mXdycq63resSszJEGd4z27yZvfDQNjjihiloG6pxDeElA==",
+  "dgSpecHash": "ADp4CJYI4E38ZI/6ydjhhrg0HfW2AJKTc9zio681voRKjWhAgZ/zGGM95di9VslOukrzKdsMkS9R3QmZV6g0Vw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
+  "projectFilePath": "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vikto\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.14\\microsoft.aspnetcore.mvc.razor.extensions.5.0.14.nupkg.sha512",
     "C:\\Users\\vikto\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.14\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.14.nupkg.sha512",

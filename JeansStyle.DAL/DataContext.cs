@@ -20,9 +20,5 @@ namespace JeansStyle.DAL
         {
             Database.EnsureCreated();
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
-        {
-            builder.UseSqlServer(@"Data Source=VIKTORIAPC; Initial Catalog=JeansStyleDB; Integrated Security=true");
-        }
     }
 }
