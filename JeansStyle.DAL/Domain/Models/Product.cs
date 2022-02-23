@@ -14,5 +14,6 @@ namespace JeansStyle.DAL.Domain.Models
         public Gender Gender { get; set; }
         public string Image { get; set; }
         public int Amount { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

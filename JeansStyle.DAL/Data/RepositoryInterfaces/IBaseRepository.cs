@@ -1,10 +1,14 @@
-﻿using System;
+﻿using JeansStyle.DAL.Domain.Models;
+using System;
 using System.Collections.Generic;
 
 namespace JeansStyle.DAL.Data.RepositoryInterfaces
 {
-    public interface IBaseRepository<T>
+    public interface IBaseRepository<T>: IDisposable where T: class
     {
         List<T> FindAllWhere(Func<T, bool> predicate);
+        void Add(T item);
+        void Update(T item);
+        void Delete(T item);
     }
 }

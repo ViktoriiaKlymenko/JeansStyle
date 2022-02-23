@@ -1,4 +1,4 @@
-﻿namespace JeansStyle.API.Models
+﻿namespace JeansStyle.BLL.Models
 {
     public class Config
     {

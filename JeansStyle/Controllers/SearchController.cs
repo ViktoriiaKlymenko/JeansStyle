@@ -17,7 +17,7 @@ namespace JeansStyle.API.Controllers
             _searchService = searchService;
         }
 
-        [HttpGet]
+        [HttpGet("GetProduct")]
         public async Task<ActionResult<SearchResponse>> GetProducts([FromQuery] SearchRequest searchRequest)
         {
             if (ModelState.IsValid)
