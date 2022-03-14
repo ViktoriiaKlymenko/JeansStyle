@@ -27,8 +27,12 @@ namespace JeansStyle.API
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
-            services.AddSwaggerGen();
-            
+            services.AddSwaggerGen(c =>
+            {
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                c.CustomSchemaIds(o => o.FullName);
+            });
+
             return services;
         }
 
