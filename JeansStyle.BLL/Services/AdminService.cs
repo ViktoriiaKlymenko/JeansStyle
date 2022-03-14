@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
 using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Interfaces;
+using JeansStyle.BLL.Models;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace JeansStyle.BLL.Services
 {
-    public class AdminService: IAdminService
+    public class AdminService : IAdminService
     {
         private readonly IBaseRepository<Product> _repository;
         private readonly IMapper _mapper;
@@ -33,6 +35,16 @@ namespace JeansStyle.BLL.Services
         {
             var product = _mapper.Map<Product>(productDto);
             _repository.Delete(product);
+        }
+
+        public async Task<SearchResponse> GetAllProducts()
+        {
+            var searchResponse = new SearchResponse
+            {
+                Products = _repository.GetAll()
+            };
+
+            return searchResponse;
         }
     }
 }

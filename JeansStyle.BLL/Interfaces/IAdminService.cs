@@ -1,4 +1,6 @@
 ﻿using JeansStyle.BLL.DTOs;
+using JeansStyle.BLL.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace JeansStyle.BLL.Interfaces
@@ -10,5 +12,6 @@ namespace JeansStyle.BLL.Interfaces
         Task UpdateProduct(ProductDto product);
 
         Task DeleteProduct(ProductDto product);
+        Task<SearchResponse> GetAllProducts();
     }
 }

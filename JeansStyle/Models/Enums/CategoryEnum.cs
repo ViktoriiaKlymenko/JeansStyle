@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.API.Models.Enums
 {
-    public enum Category
+    public enum CategoryEnum
     {
         Skirt = 0,
         Dress = 1,

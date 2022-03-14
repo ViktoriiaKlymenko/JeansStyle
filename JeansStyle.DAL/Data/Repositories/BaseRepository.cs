@@ -25,6 +25,11 @@ namespace JeansStyle.DAL.Data.Repositories
             return _context.Set<T>().Where(predicate).ToList();
         }
 
+        public List<T> GetAll()
+        {
+            return _context.Set<T>().ToList();
+        }
+
         public void Add(T item)
         {
             _context.Set<T>().Add(item);

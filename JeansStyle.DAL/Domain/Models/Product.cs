@@ -15,5 +15,6 @@ namespace JeansStyle.DAL.Domain.Models
         public string Image { get; set; }
         public int Amount { get; set; }
         public List<Order> Orders { get; set; }
+        public decimal Price { get; set; }
     }
 }
