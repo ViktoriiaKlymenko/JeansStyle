@@ -42,6 +42,8 @@ namespace JeansStyle
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectName");
+                options.RoutePrefix = string.Empty;
+
             });
 
 
