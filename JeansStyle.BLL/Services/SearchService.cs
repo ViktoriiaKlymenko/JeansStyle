@@ -28,12 +28,11 @@ namespace JeansStyle.BLL.Services
             return searchResponse;
         }
 
-        public async Task<SearchResponse> GetAllByCategory(CategoryDto categoryDto)
+        public async Task<SearchResponse> GetAllByCategory(string category)
         {
-            var category = _mapper.Map<Category>(categoryDto);
             var searchResponse = new SearchResponse
             {
-                Products = _repository.FindAllWhere(p => p.Category == category)
+                Products = _repository.FindAllWhere(p => p.Category.Name == category)
             };
 
             return searchResponse;

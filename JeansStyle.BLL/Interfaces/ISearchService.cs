@@ -7,6 +7,6 @@ namespace JeansStyle.BLL.Interfaces
     public interface ISearchService
     {
         Task<SearchResponse> GetProductsByTitleAndDescription(string keyword);
-        Task<SearchResponse> GetAllByCategory(CategoryDto categoryDto);
+        Task<SearchResponse> GetAllByCategory(string category);
     }
 }

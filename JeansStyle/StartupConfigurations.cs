@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Converters;
 using JeansStyle.BLL;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Services;
@@ -6,13 +10,7 @@ using JeansStyle.DAL;
 using JeansStyle.DAL.Data.Repositories;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace JeansStyle.API
 {
@@ -32,6 +30,12 @@ namespace JeansStyle.API
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 c.CustomSchemaIds(o => o.FullName);
             });
+
+            services
+                .AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+            services.AddSwaggerGenNewtonsoftSupport();
 
             return services;
         }

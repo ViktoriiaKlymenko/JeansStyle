@@ -36,10 +36,10 @@ namespace JeansStyle.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var categoryDto = _mapper.Map<CategoryDto>(category);
-                return await _searchService.GetAllByCategory(categoryDto);
+                var categoryName = category.ToString();
+                return await _searchService.GetAllByCategory(categoryName);
             }
-           
+
             return BadRequest(ModelState);
         }
     }

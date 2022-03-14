@@ -1,48 +1,55 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
+
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - JeansStyle</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/bundle.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/compiled.css" type="text/css" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery.maskedinput/jquery.maskedinput.js"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JeansStyle</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="nav-container">
+            <div class="nav-links-width hidden"></div>
+            <a class="nav-container" href="@Configuration["Urls:RedirectionUrls:FrontEndSite"]">
+                <img class="nav-logo" src="~/images/logo.svg" alt="AltexTravel" />
+                <p class="nav-links hidden">AltexTravel</p>
+            </a>
+            <div class="nav-links-container nav-links-width">
+                <a class="nav-links" href="~/account/authorize">@Localizer["SignIn"]</a>
+                <a class="nav-links" href="~/account/register">@Localizer["SignUp"]</a>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="account-form-background">
+        @RenderBody()
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - JeansStyle - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer>
+        <div class="this-website-is-for">
+            <h4>This website is for demo purposes only</h4>
+            <p>
+                It demonstrates the functionality of AltexSoft Booking Engine – integration with GDS,
+                flight search, booking and ticketing process. You cannot book real flight ticket here.
+            </p>
+        </div>
+        <div class="travel-technology-co">
+            <div>
+                <img class="" src="~/images/logo.svg" alt="AltexTravel" />
+                <p class="">altexsoft</p>
+            </div>
+            <p>Travel Technology Consulting company</p>
+            <a href="https://www.altexsoft.com">altexsoft.com</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

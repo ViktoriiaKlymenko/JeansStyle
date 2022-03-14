@@ -21,6 +21,8 @@ namespace JeansStyle.API.Models
         [Required]
         public string Image { get; set; }
         [Required]
-        public List<Size> Size { get; set; }
+        public Sizes Size { get; set; }
+        [Required]
+        public int Amount { get; set; }
     }
 }
