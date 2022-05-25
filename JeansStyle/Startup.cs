@@ -39,17 +39,13 @@ namespace JeansStyle
             app.UseAuthorization();
             app.UseStaticFiles();
             app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectName");
-                options.RoutePrefix = string.Empty;
-
-            });
-
-
+          
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllers();
             });
         }

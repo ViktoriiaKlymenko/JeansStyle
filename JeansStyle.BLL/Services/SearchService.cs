@@ -5,7 +5,9 @@ using JeansStyle.BLL.Models;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace JeansStyle.BLL.Services
@@ -13,14 +15,17 @@ namespace JeansStyle.BLL.Services
     public class SearchService : ISearchService
     {
         private readonly IBaseRepository<Product> _repository;
+        private readonly IBaseRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
 
-        public SearchService(IBaseRepository<Product> repository)
+        public SearchService(IBaseRepository<Product> repository, IBaseRepository<Category> categoryRepository, IMapper mapper)
         {
             _repository = repository;
+            _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
-        public async Task<SearchResponse> GetProductsByTitleAndDescription(string keyword)
+        public SearchResponse GetProductsByTitleAndDescription(string keyword)
         {
             var searchResponse = new SearchResponse();
             searchResponse.Products = _repository.FindAllWhere(p => p.Title == keyword);
@@ -28,7 +33,7 @@ namespace JeansStyle.BLL.Services
             return searchResponse;
         }
 
-        public async Task<SearchResponse> GetAllByCategory(string category)
+        public SearchResponse GetAllByCategory(string category)
         {
             var searchResponse = new SearchResponse
             {
@@ -36,6 +41,31 @@ namespace JeansStyle.BLL.Services
             };
 
             return searchResponse;
+        }
+
+        public List<string> GetAllCategories()
+        {
+            var smth = _categoryRepository.GetAll();
+            var names = smth.Select(s=>s.Name);
+            return names.ToList();
+        }
+
+        public SearchResponse GetAll()
+        {
+            var searchResponse = new SearchResponse
+            {
+                Products = _repository.GetAll()
+            };
+
+            return searchResponse;
+        }
+
+        public ProductDto GetById(Guid id)
+        {
+            var product = _repository.FindWhere(p => p.Id == id);
+            var productDto = _mapper.Map<ProductDto>(product);
+
+            return productDto;
         }
     }
 }

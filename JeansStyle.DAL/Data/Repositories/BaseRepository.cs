@@ -25,6 +25,11 @@ namespace JeansStyle.DAL.Data.Repositories
             return _context.Set<T>().Where(predicate).ToList();
         }
 
+        public T FindWhere(Func<T, bool> predicate)
+        {
+            return _context.Set<T>().Where(predicate).FirstOrDefault();
+        }
+
         public List<T> GetAll()
         {
             return _context.Set<T>().ToList();

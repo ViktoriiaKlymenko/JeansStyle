@@ -5,18 +5,9 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.BLL.DTOs.Enums
 {
-    public enum Category
+    public class Category
     {
-        Skirt = 0,
-        Dress = 1,
-        Tshirt = 2,
-        Jeans = 3,
-        Jacket = 4,
-        Coat = 5,
-        DownJacket = 6,
-        SportSuit = 7,
-        Sweatshirt = 8,
-        Shorts = 9,
-        Pullover = 10
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

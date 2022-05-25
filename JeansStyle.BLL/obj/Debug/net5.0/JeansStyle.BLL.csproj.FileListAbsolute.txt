@@ -1,6 +1,5 @@
 C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\net5.0\JeansStyle.BLL.deps.json
 C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\net5.0\JeansStyle.BLL.dll
-C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\net5.0\ref\JeansStyle.BLL.dll
 C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\net5.0\JeansStyle.BLL.pdb
 C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -291,10 +290,10 @@ C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\JeansStyle.BLL.AssemblyInfoInp
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\JeansStyle.BLL.AssemblyInfo.cs
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\JeansStyle.BLL.csproj.CoreCompileInputs.cache
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\staticwebassets\JeansStyle.BLL.StaticWebAssets.Manifest.cache
-C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\staticwebassets\JeansStyle.BLL.StaticWebAssets.xml
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\scopedcss\bundle\JeansStyle.BLL.styles.css
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\JeansStyle.BLL.RazorTargetAssemblyInfo.cache
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\JeansStyle.BLL.csproj.CopyComplete
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\JeansStyle.BLL.dll
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\ref\JeansStyle.BLL.dll
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\JeansStyle.BLL.pdb
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\net5.0\refint\JeansStyle.BLL.dll

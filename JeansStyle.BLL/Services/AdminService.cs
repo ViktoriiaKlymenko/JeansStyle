@@ -12,32 +12,38 @@ namespace JeansStyle.BLL.Services
     public class AdminService : IAdminService
     {
         private readonly IBaseRepository<Product> _repository;
+        private readonly IBaseRepository<Category> _categoryRepository;
+
         private readonly IMapper _mapper;
 
-        public AdminService(IBaseRepository<Product> baseRepository)
+        public AdminService(IBaseRepository<Product> baseRepository, IMapper mapper, IBaseRepository<Category> categoryRepository)
         {
             _repository = baseRepository;
+            _mapper = mapper;
+            _categoryRepository = categoryRepository;
         }
 
-        public async Task AddProduct(ProductDto productDto)
+        public void AddProduct(ProductDto productDto)
         {
+            var categoryId = _categoryRepository.FindWhere(c => c.Name == productDto.Category.Name).Id;
+            productDto.Category.Id = categoryId;
             var product = _mapper.Map<Product>(productDto);
             _repository.Add(product);
         }
 
-        public async Task UpdateProduct(ProductDto productDto)
+        public void UpdateProduct(ProductDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
             _repository.Update(product);
         }
 
-        public async Task DeleteProduct(ProductDto productDto)
+        public void DeleteProduct(ProductDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
             _repository.Delete(product);
         }
 
-        public async Task<SearchResponse> GetAllProducts()
+        public SearchResponse GetAllProducts()
         {
             var searchResponse = new SearchResponse
             {

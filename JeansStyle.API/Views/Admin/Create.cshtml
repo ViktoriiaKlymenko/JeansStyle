@@ -1,0 +1,91 @@
+﻿@model JeansStyle.API.Models.Product
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Form</title>
+</head>
+<div class="main-content">
+    <form method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label><br />
+        <input type="text" name="title" /><br /><br />
+
+        <label for="size">Choose a size:</label><br />
+        <select name="sizes">
+            <option value=0>XS</option>
+            <option value=1>S</option>
+            <option value=2>M</option>
+            <option value=3>L</option>
+            <option value=4>XL</option>
+            <option value=5>XXL</option>
+            <option value=6>XXXL</option>
+            <option value=7>XXXXL</option>
+            <option value=8>XXXXXL</option>
+        </select><br /><br />
+
+        <label>Amount:</label><br />
+        <input type="amount" name="amount" /><br /><br />
+
+        <label>Description:</label><br />
+        <input type="description" name="description" /><br /><br />
+
+        <label for=category>Choose the category:</label><br />
+        <select multiple name="category" asp-for=Category.Name>
+            <option value="Skirt">Skirt</option>
+            <option value="Dress">Dress</option>
+            <option value="T-shirt">T-shirt</option>
+            <option value="Jeans">Jeans</option>
+            <option value="Jacket">Jacket</option>
+            <option value="Coat">Coat</option>
+            <option value="Down Jacket">Down Jacket</option>
+            <option value="Sport Suit">Sport Suit</option>
+            <option value="Sweatshirt">Sweatshirt</option>
+            <option value="Shorts">Shorts</option>
+            <option value="Pullover">Pullover</option>
+        </select><br /><br />
+
+        <label for="season">Choose the season:</label><br />
+        <select multiple name="season">
+            <option value=0>Winter</option>
+            <option value=1>Spring</option>
+            <option value=2>Summer</option>
+            <option value=3>Autumn</option>
+
+        </select><br /><br />
+
+        <label for="gender">Choose the gender:</label>
+        <select name="gender">
+            <option value=0>Male</option>
+            <option value=0>Female</option>
+            <option value=0>Unisex</option>
+        </select><br /><br />
+
+        <div class="form-group">
+            <label asp-for=@Model.Image class="control-label"></label>
+            <div class="custom-file">
+                <input asp-for=@Model.Image class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <span asp-validation-for=@Model.Image class="text-danger"></span>
+        </div>
+
+        <input type="submit" value="Send" />
+    </form>
+
+
+
+    <p>
+        @Html.ActionLink("Delete", "Delete") |
+        @Html.ActionLink("Back to List", "GetProducts")
+    </p>
+</html>
+@section scripts{
+<script type="text/javascript">
+
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+}

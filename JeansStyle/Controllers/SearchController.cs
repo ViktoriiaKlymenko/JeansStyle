@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using JeansStyle.API.Models;
-using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class SearchController : ControllerBase
+    [Controller]
+    [Route("[controller]/[action]")]
+    public class SearchController : Controller
     {
         private readonly ISearchService _searchService;
         private readonly IMapper _mapper;
@@ -18,6 +17,12 @@ namespace JeansStyle.API.Controllers
         public SearchController(ISearchService searchService)
         {
             _searchService = searchService;
+        }
+
+        [HttpGet]
+        public ViewResult Index()
+        {
+            return View("Index");
         }
 
         [HttpGet]

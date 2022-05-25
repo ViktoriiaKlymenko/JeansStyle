@@ -7,11 +7,11 @@ namespace JeansStyle.BLL.Interfaces
 {
     public interface IAdminService
     {
-        Task AddProduct(ProductDto product);
+        void AddProduct(ProductDto product);
 
-        Task UpdateProduct(ProductDto product);
+        void UpdateProduct(ProductDto product);
 
-        Task DeleteProduct(ProductDto product);
-        Task<SearchResponse> GetAllProducts();
+        void DeleteProduct(ProductDto product);
+        SearchResponse GetAllProducts();
     }
 }

@@ -297,7 +297,6 @@ C:\Users\vikto\OneDrive\Документы\1DIPLOMA\JeansStyle.DAL\obj\Debug\net
 C:\Users\vikto\OneDrive\Документы\1DIPLOMA\JeansStyle.DAL\obj\Debug\net5.0\JeansStyle.DAL.pdb
 C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\net5.0\JeansStyle.DAL.deps.json
 C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\net5.0\JeansStyle.DAL.dll
-C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\net5.0\ref\JeansStyle.DAL.dll
 C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\net5.0\JeansStyle.DAL.pdb
 C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -586,9 +585,9 @@ C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\JeansStyle.DAL.AssemblyInfoInp
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\JeansStyle.DAL.AssemblyInfo.cs
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\JeansStyle.DAL.csproj.CoreCompileInputs.cache
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\staticwebassets\JeansStyle.DAL.StaticWebAssets.Manifest.cache
-C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\staticwebassets\JeansStyle.DAL.StaticWebAssets.xml
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\scopedcss\bundle\JeansStyle.DAL.styles.css
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\JeansStyle.DAL.RazorTargetAssemblyInfo.cache
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\JeansStyle.DAL.dll
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\ref\JeansStyle.DAL.dll
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\JeansStyle.DAL.pdb
+C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\net5.0\refint\JeansStyle.DAL.dll

@@ -7,6 +7,7 @@ namespace JeansStyle.DAL.Data.RepositoryInterfaces
     public interface IBaseRepository<T>: IDisposable where T: class
     {
         List<T> FindAllWhere(Func<T, bool> predicate);
+        T FindWhere(Func<T, bool> predicate);
         List<T> GetAll();
         void Add(T item);
         void Update(T item);

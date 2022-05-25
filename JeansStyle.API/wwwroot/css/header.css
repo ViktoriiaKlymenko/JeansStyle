@@ -1,0 +1,80 @@
+﻿header {
+    height: 54px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 24px;
+    color: #556B7A;
+}
+
+.nav-links-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-links-width {
+    width: 350px;
+}
+
+.nav-links {
+    font-family: 'Raleway', sans-serif;
+    margin-top: auto;
+    width: auto;
+    padding-left: 10px;
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: xxx-large;
+    color: dimgrey;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.search-txt {
+    font-size: medium;
+}
+
+.nav-logo {
+    height: 2rem;
+    margin: 0.65rem 0;
+}
+
+.navbar-nav {
+    justify-content: center;
+}
+
+.search-box {
+    padding: 10px;
+    border-top: thick;
+    border-right: hidden;
+    border-left: hidden;
+}
+
+.search-txt {
+    border-top: hidden;
+    border-right: hidden;
+    border-left: hidden;
+    min-width: 450px;
+}
+
+.search-btn {
+    border: hidden;
+    background: white;
+}
+
+.fa-shopping-cart {
+    color: dimgrey;
+}
+
+.fa-search:before {
+    color: dimgray;
+}
