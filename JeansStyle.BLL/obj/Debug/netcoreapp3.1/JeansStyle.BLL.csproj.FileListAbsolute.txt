@@ -13,3 +13,6 @@ C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.RazorTar
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.csproj.CopyComplete
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.dll
 C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.pdb
+C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\netcoreapp3.1\JeansStyle.BLL.runtimeconfig.json
+C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\netcoreapp3.1\JeansStyle.BLL.runtimeconfig.dev.json
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.genruntimeconfig.cache

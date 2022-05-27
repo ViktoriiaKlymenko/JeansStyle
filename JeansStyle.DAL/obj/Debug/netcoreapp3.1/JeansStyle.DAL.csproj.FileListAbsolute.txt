@@ -10,3 +10,6 @@ C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\netcoreapp3.1\staticwebassets\JeansSt
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\netcoreapp3.1\JeansStyle.DAL.RazorTargetAssemblyInfo.cache
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\netcoreapp3.1\JeansStyle.DAL.dll
 C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\netcoreapp3.1\JeansStyle.DAL.pdb
+C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\netcoreapp3.1\JeansStyle.DAL.runtimeconfig.json
+C:\JeansStyle2022\JeansStyle.DAL\bin\Debug\netcoreapp3.1\JeansStyle.DAL.runtimeconfig.dev.json
+C:\JeansStyle2022\JeansStyle.DAL\obj\Debug\netcoreapp3.1\JeansStyle.DAL.genruntimeconfig.cache

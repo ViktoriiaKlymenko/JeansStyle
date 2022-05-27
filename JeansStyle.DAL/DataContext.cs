@@ -1,6 +1,7 @@
 ﻿using JeansStyle.DAL.Domain.Enums;
 using JeansStyle.DAL.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.DAL
 {
-    public class DataContext: DbContext
+    public class DataContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
@@ -20,6 +21,13 @@ namespace JeansStyle.DAL
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
         }
     }
 }

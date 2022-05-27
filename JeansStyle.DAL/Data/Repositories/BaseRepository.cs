@@ -38,8 +38,6 @@ namespace JeansStyle.DAL.Data.Repositories
 
         public void Add(T item)
         {
-
-            
             _context.Set<T>().Add(item);
             _context.SaveChanges();
         }

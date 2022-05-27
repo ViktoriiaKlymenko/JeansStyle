@@ -33,16 +33,21 @@ namespace JeansStyle.BLL.Services
             return searchResponse;
         }
 
-        public SearchResponse GetAllByCategory(string category)
+        public SearchResponse GetAllProductsByCategoryId(Guid id)
         {
             var products = _repository.GetAll();
             var searchResponse = new SearchResponse
             {
-                Products = _repository.FindAllWhere(p => p.Category.Name == category)
+                Products = _repository.FindAllWhere(p => p.CategoryId == id)
             };
 
 
             return searchResponse;
+        }
+
+        public Guid GetCategoryIdByName(string name)
+        {
+            return _categoryRepository.FindWhere(c => c.Name == name).Id;
         }
 
         public IEnumerable<string> GetAllCategoriesNames()
@@ -80,11 +85,6 @@ namespace JeansStyle.BLL.Services
             var productDto = _mapper.Map<ProductDto>(product);
 
             return productDto;
-        }
-
-        public Guid GetCategoryIdByName(string name)
-        {
-            return _categoryRepository.FindWhere(c=>c.Name == name).Id;
         }
     }
 }

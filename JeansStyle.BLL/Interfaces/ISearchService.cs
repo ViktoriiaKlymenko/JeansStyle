@@ -9,11 +9,12 @@ namespace JeansStyle.BLL.Interfaces
     public interface ISearchService
     {
         SearchResponse GetProductsByTitleAndDescription(string keyword);
-        SearchResponse GetAllByCategory(string category);
+        //SearchResponse GetAllByCategory(string category);
         SearchResponse GetAll();
         IEnumerable<string> GetAllCategoriesNames();
         List<CategoryDto> GetAllCategories();
         ProductDto GetById(Guid id);
         Guid GetCategoryIdByName(string name);
+        SearchResponse GetAllProductsByCategoryId(Guid id);
     }
 }

@@ -63,10 +63,10 @@ namespace JeansStyle.API.Controllers
             ViewBag.ActionType = "GetProductsByCategory";
             if (ModelState.IsValid)
             {
-                var categoryName = category.ToString();
                 try
                 {
-                    var products = _searchService.GetAllByCategory(categoryName).Products;
+                    var categoryId = _searchService.GetCategoryIdByName(category);
+                    var products = _searchService.GetAllProductsByCategoryId(categoryId).Products;
                     ViewBag.Products = products;
                     return View("GetProducts");
                 }

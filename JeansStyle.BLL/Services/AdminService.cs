@@ -29,8 +29,6 @@ namespace JeansStyle.BLL.Services
 
         public void AddProduct(ProductDto productDto)
         {
-            try { 
-            
             var season = _seasonRepository.FindAllWhere(s => s.Name == productDto.Season.ToString());
             var productModelForMapping = new ProductModelForMapping
             {
@@ -46,14 +44,6 @@ namespace JeansStyle.BLL.Services
             var product = _mapper.Map<Product>(productModelForMapping);
             
             _repository.Add(product);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-                Console.WriteLine(ex.InnerException);
-            }
-
         }
 
         public void UpdateProduct(ProductDto productDto)

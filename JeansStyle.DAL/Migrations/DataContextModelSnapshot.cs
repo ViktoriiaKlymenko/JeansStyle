@@ -16,7 +16,7 @@ namespace JeansStyle.DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.14")
+                .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Category", b =>
@@ -81,7 +81,7 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("CategoryId")
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -94,7 +94,7 @@ namespace JeansStyle.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -208,12 +208,12 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<Guid>("ProductsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("SeasonId")
+                    b.Property<int>("SeasonsId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductsId", "SeasonId");
+                    b.HasKey("ProductsId", "SeasonsId");
 
-                    b.HasIndex("SeasonId");
+                    b.HasIndex("SeasonsId");
 
                     b.ToTable("ProductSeason");
                 });
@@ -229,11 +229,13 @@ namespace JeansStyle.DAL.Migrations
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Product", b =>
                 {
-                    b.HasOne("JeansStyle.DAL.Domain.Models.Category", "Category")
-                        .WithMany("Items")
-                        .HasForeignKey("CategoryId");
+                    b.HasOne("JeansStyle.DAL.Domain.Models.Category", "Categories")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.ProductSize", b =>
@@ -285,14 +287,14 @@ namespace JeansStyle.DAL.Migrations
 
                     b.HasOne("JeansStyle.DAL.Domain.Models.Season", null)
                         .WithMany()
-                        .HasForeignKey("SeasonId")
+                        .HasForeignKey("SeasonsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Category", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
