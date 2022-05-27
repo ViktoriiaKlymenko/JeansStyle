@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {}
+    "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
+    "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
+        "projectUniqueName": "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
         "projectName": "JeansStyle.DAL",
-        "projectPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
+        "projectPath": "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
         "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vikto\\OneDrive\\Документы\\JeansStyle\\JeansStyle.DAL\\obj\\",
+        "outputPath": "C:\\JeansStyle2022\\JeansStyle.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,12 +37,12 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+            "EntityFramework": {
               "target": "Package",
-              "version": "[5.0.14, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

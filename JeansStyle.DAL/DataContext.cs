@@ -15,14 +15,11 @@ namespace JeansStyle.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Season> Seasons { get; set; }
+        public DbSet<UserCredentials> UserCredentials { get; set; }
+        public DbSet<LocationCredentials> LocationCredentials { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            Database.EnsureCreated();
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
-        {
-            builder.UseSqlServer(@"Data Source=VIKTORIAPC; Initial Catalog=JeansStyleDB; Integrated Security=true");
         }
     }
 }

@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+<div class="main-content">
+    <a href="~/Admin/Create/"><b>Add new product</b></a>
+
+    @foreach (var product in ViewBag.Products)
+    {
+        
+            <div class="col-md-3">
+                 <img class="image" src="@product.Image" alt="">
+                </div>
+           <div class="col-md-9">
+                <div class="card" id=@product.Id>
+                    <div class="description">
+                        <p><b>Title:</b> @product.Title</p>
+                    </div>
+
+                    <div class="description">
+                        <p><b>Description: </b>@product.Description</p>
+                    </div>
+
+                    <div class="description">
+                        <p><b>Gender:</b> @product.Gender</p>
+                    </div>
+
+                    <div class="description">
+                        <p><b>Image:</b> @product.Image</p>
+                    </div>
+                    <br>
+                    <p>
+                        @Html.ActionLink("Delete", "Delete", new{id=@product.Id}) |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+                </div>
+            </div>
+            <p></p>
+    }
+</div>
+
+<style>
+    .card {
+        padding-top: 10px;
+    }
+</style>
