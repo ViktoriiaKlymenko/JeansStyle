@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using JeansStyle.API.Mapping;
 using JeansStyle.API.Models;
-using JeansStyle.API.Models.Enums;
 using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,7 +29,7 @@ namespace JeansStyle.API.Controllers
         }
 
         public ActionResult Delete(Guid id)
-        {           
+        {
             var product = _searchService.GetById(id);
             _adminService.DeleteProduct(product);
             return View();
@@ -36,7 +37,7 @@ namespace JeansStyle.API.Controllers
 
         public ActionResult GetProducts()
         {
-            ViewBag.Products =  _searchService.GetAll().Products;
+            ViewBag.Products = _searchService.GetAll().Products;
             return View();
         }
 
@@ -44,36 +45,49 @@ namespace JeansStyle.API.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Create()
         {
-            var product = new Product();
-
-            return View(product);
+            var allCategories = _searchService.GetAllCategories();
+            SelectList categories = new SelectList(allCategories, "Id", "Name");
+            ViewBag.Categories = categories;
+            return View();
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Product product)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                string filePath = "wwwroot/images/clothes/" + product.Image.FileName;
+                using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
                 {
-                    string filePath = "wwwroot/images/clothes/" + product.Image.FileName;
-                    using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
-                    {
-                        await product.Image.CopyToAsync(fileStream);
-                    }                  
-
-                    var productDto = _mapper.Map<ProductDto>(product);
-                    productDto.Image = filePath;
-
-                    _adminService.AddProduct(productDto);
-                    return RedirectToAction("GetProducts");
+                    await product.Image.CopyToAsync(fileStream);
                 }
+
+                var category = new Category
+                {
+                    Id = _searchService.GetCategoryIdByName(product.Category),
+                    Name = product.Category
+                };
+
+                var productModelForMapping = new ProductModelForMapping
+                {
+                    Title = product.Title,
+                    Description = product.Description,
+                    Category = category,
+                    Season = product.Season,
+                    Gender = product.Gender,
+                    Image = filePath,
+                    Size = product.Size,
+                    Amount = product.Amount,
+                };
+
+                var productDto = _mapper.Map<ProductDto>(productModelForMapping);
+
+                _adminService.AddProduct(productDto);
+                return RedirectToAction("GetProducts");
             }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
+
             return View(product);
         }
     }

@@ -1,0 +1,15 @@
+C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\netcoreapp3.1\JeansStyle.BLL.deps.json
+C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\netcoreapp3.1\JeansStyle.BLL.dll
+C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\netcoreapp3.1\JeansStyle.BLL.pdb
+C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\netcoreapp3.1\JeansStyle.DAL.dll
+C:\JeansStyle2022\JeansStyle.BLL\bin\Debug\netcoreapp3.1\JeansStyle.DAL.pdb
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.csproj.AssemblyReference.cache
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.AssemblyInfoInputs.cache
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.AssemblyInfo.cs
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.csproj.CoreCompileInputs.cache
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\staticwebassets\JeansStyle.BLL.StaticWebAssets.Manifest.cache
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.RazorTargetAssemblyInfo.cache
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.csproj.CopyComplete
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.dll
+C:\JeansStyle2022\JeansStyle.BLL\obj\Debug\netcoreapp3.1\JeansStyle.BLL.pdb

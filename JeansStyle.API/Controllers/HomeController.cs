@@ -22,11 +22,11 @@ namespace JeansStyle.API.Controllers
             _searchService = searchService;
         }
 
-        public async Task<ActionResult<SearchResponse>> GetProducts([FromQuery] string searchRequest)
+        public async Task<ActionResult<SearchResponse>> GetProducts([FromQuery] SearchRequest searchRequest)
         {
             if (ModelState.IsValid)
             {
-                var products = _searchService.GetProductsByTitleAndDescription(searchRequest);
+                var products = _searchService.GetProductsByTitleAndDescription(searchRequest.Request);
                 if(products.Products.Count == 0)
                 {
                     ViewBag.Request = searchRequest;
@@ -35,7 +35,7 @@ namespace JeansStyle.API.Controllers
                 ViewBag.Products = products.Products;
                 return View();
             }
-            ViewBag.Request = searchRequest;
+            ViewBag.Message = searchRequest.Request;
             return View("NotFound");
         }
 
@@ -59,19 +59,23 @@ namespace JeansStyle.API.Controllers
         [HttpGet]
         public async Task<ActionResult<SearchResponse>> GetProductByCategory([FromQuery] string category)
         {
+
             ViewBag.ActionType = "GetProductsByCategory";
             if (ModelState.IsValid)
             {
                 var categoryName = category.ToString();
-                var products = _searchService.GetAllByCategory(categoryName);
-                if (products.Products.Count == 0)
+                try
                 {
-                    ViewBag.Request = category;
-                    return View("NotFound");
+                    var products = _searchService.GetAllByCategory(categoryName).Products;
+                    ViewBag.Products = products;
+                    return View("GetProducts");
                 }
-              
-                ViewBag.Products = products;
-                return View("GetProducts");
+                catch(Exception ex)
+                {
+                    ViewBag.Message = category;
+                    return View("NotFound");
+                }    
+                
             }
 
             return BadRequest(ModelState);

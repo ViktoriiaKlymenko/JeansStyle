@@ -12,7 +12,7 @@ namespace JeansStyle.BLL.DTOs
 
         public string Description { get; set; }
 
-        public Category Category { get; set; }
+        public CategoryDto Category { get; set; }
 
         public List<Season> Season { get; set; }
 
@@ -22,5 +22,6 @@ namespace JeansStyle.BLL.DTOs
         public Size Size { get; set; }
 
         public int Amount { get; set; }
+        public decimal Price { get; set; }
     }
 }

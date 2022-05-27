@@ -11,7 +11,9 @@ namespace JeansStyle.BLL.Interfaces
         SearchResponse GetProductsByTitleAndDescription(string keyword);
         SearchResponse GetAllByCategory(string category);
         SearchResponse GetAll();
-        List<string> GetAllCategories();
+        IEnumerable<string> GetAllCategoriesNames();
+        List<CategoryDto> GetAllCategories();
         ProductDto GetById(Guid id);
+        Guid GetCategoryIdByName(string name);
     }
 }

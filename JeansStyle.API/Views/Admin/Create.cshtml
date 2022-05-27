@@ -1,4 +1,7 @@
 ﻿@model JeansStyle.API.Models.Product
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 <html>
@@ -29,19 +32,26 @@
         <label>Description:</label><br />
         <input type="description" name="description" /><br /><br />
 
-        <label for=category>Choose the category:</label><br />
-        <select multiple name="category" asp-for=Category.Name>
-            <option value="Skirt">Skirt</option>
-            <option value="Dress">Dress</option>
-            <option value="T-shirt">T-shirt</option>
+        @* <label for="category">Choose a category:</label><br />
+            <select name="category">
+            @foreach (var category in ViewBag.Categories)
+            {
+            <option value=@category>@category.Name</option>
+            }
+            </select><br /><br />*@
+        <label for="category">Choose the category:</label><br />
+        <select multiple name="category">
             <option value="Jeans">Jeans</option>
+            <option value="T-shirt"> T-shirt </option>
             <option value="Jacket">Jacket</option>
-            <option value="Coat">Coat</option>
-            <option value="Down Jacket">Down Jacket</option>
-            <option value="Sport Suit">Sport Suit</option>
-            <option value="Sweatshirt">Sweatshirt</option>
-            <option value="Shorts">Shorts</option>
-            <option value="Pullover">Pullover</option>
+            <option value="Coat"> Coat</option>
+            <option value="Down Jacket"> Down Jacket</option>
+            <option value="Sport Suit"> Sport Suit</option>
+            <option value="Sweatshirt"> Sweatshirt</option>
+            <option value="Shorts"> Shorts </option>
+            <option value="Pullover"> Pullover</option>
+            <option value="Skirt">Skirt </option>
+            <option value="Dress">Dress</option>
         </select><br /><br />
 
         <label for="season">Choose the season:</label><br />
@@ -56,8 +66,8 @@
         <label for="gender">Choose the gender:</label>
         <select name="gender">
             <option value=0>Male</option>
-            <option value=0>Female</option>
-            <option value=0>Unisex</option>
+            <option value=1>Female</option>
+            <option value=2>Unisex</option>
         </select><br /><br />
 
         <div class="form-group">

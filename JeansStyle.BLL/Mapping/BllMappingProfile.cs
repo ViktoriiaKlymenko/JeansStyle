@@ -2,13 +2,14 @@
 using JeansStyle.BLL.DTOs;
 using JeansStyle.DAL.Domain.Models;
 
-namespace JeansStyle.BLL
+namespace JeansStyle.BLL.Mapping
 {
     public class BllMappingProfile : Profile
     {
         public BllMappingProfile()
         {
-            CreateMap<ProductDto, Product>().ReverseMap();
+            CreateMap<ProductModelForMapping, Product>().ReverseMap();
+            CreateMap<CategoryDto, Category>().ReverseMap();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,8 @@ namespace JeansStyle.DAL.Data.Repositories
 
         public void Add(T item)
         {
+
+            
             _context.Set<T>().Add(item);
             _context.SaveChanges();
         }

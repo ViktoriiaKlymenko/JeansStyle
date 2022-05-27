@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Converters;
 using JeansStyle.BLL;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Services;
@@ -10,7 +9,8 @@ using JeansStyle.DAL;
 using JeansStyle.DAL.Data.Repositories;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
-using System.Linq;
+using JeansStyle.API.Mapping;
+using JeansStyle.BLL.Mapping;
 
 namespace JeansStyle.API
 {
@@ -35,7 +35,7 @@ namespace JeansStyle.API
         {
             services.AddScoped<IBaseRepository<Product>, BaseRepository<Product>>();
             services.AddScoped<IBaseRepository<Category>, BaseRepository<Category>>();
-
+            services.AddScoped<IBaseRepository<Season>, BaseRepository<Season>>();
             return services;
         }
 

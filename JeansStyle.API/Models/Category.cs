@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JeansStyle.BLL.DTOs.Enums
+namespace JeansStyle.API.Models
 {
     public class Category
     {

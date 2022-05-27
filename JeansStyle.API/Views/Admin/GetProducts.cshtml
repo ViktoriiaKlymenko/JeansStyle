@@ -1,4 +1,9 @@
-﻿<div class="main-content">
+﻿@{
+    Layout = null;
+}
+<div class="main-content">
+    <a href="~/Admin/Create/"><b>Add new product</b></a>
+
     @foreach (var product in ViewBag.Products)
     {
         

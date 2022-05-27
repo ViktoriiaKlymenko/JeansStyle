@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/css/header.css" />
     <link rel="stylesheet" href="~/css/carousel.css" />
     <link rel="stylesheet" href="~/css/dropdown.css" />
+    <link rel="stylesheet" href="~/css/card.css" />
 
     <script src="~/js/bootstrap.min.js"></script>
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
@@ -27,13 +28,14 @@
             @using (Html.BeginForm("GetProducts", "Home", FormMethod.Get))
             {
                 <div class="search-box">
-                    <input class="search-txt" id="searchRequest" name="searchRequest" asp-for="Request" placeholder="Search" />
-                    <button class="search-btn" type="submit" href="~/account/authorize/"><i class="fa fa-search fa-1x"></i></button>
-                    <span asp-validation-summary="Request" class="text-danger"></span>
+                    <input class="search-txt" autocomplete="on" id="searchRequest" name="searchRequest.Request" placeholder="Search" />
+                    <button class="search-btn" type="submit" href="~/Home/GetProducts/"><i class="fa fa-search fa-1x"></i></button>
                 </div>
             }
             <div class="basket">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <a href ="~/ShoppingCart/Index/">
+                <i class="fa fa-shopping-cart" aria-hidden="true" href="~/ShoppingCart/Index/"></i>
+                </a>
             </div>
         </div>
 
