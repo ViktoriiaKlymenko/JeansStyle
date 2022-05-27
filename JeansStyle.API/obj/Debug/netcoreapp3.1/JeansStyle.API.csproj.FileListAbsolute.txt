@@ -97,3 +97,4 @@ C:\JeansStyle2022\JeansStyle.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netco
 C:\JeansStyle2022\JeansStyle.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\JeansStyle2022\JeansStyle.API\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\JeansStyle2022\JeansStyle.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\JeansStyle2022\JeansStyle.API\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_PartialView.cshtml.g.cs

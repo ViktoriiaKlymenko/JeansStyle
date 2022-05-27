@@ -58,8 +58,8 @@ namespace JeansStyle.API.Controllers
 
             if (ModelState.IsValid)
             {
-                string filePath = "wwwroot/images/clothes/" + product.Image.FileName;
-                using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
+                string filePath = "/images/clothes/" + product.Image.FileName;
+                using (var fileStream = new FileStream("wwwroot"+filePath, FileMode.OpenOrCreate))
                 {
                     await product.Image.CopyToAsync(fileStream);
                 }
@@ -78,8 +78,7 @@ namespace JeansStyle.API.Controllers
                     Season = product.Season,
                     Gender = product.Gender,
                     Image = filePath,
-                    Size = product.Size,
-                    Amount = product.Amount,
+Price = product.Price,
                 };
 
                 var productDto = _mapper.Map<ProductDto>(productModelForMapping);

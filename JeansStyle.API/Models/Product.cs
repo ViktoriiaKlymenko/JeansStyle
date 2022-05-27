@@ -25,10 +25,6 @@ namespace JeansStyle.API.Models
         [Required]
         public IFormFile Image { get; set; }
         [Required]
-        public Size Size { get; set; }
-        [Required]
-        [Range(1, 100)]
-        public int Amount { get; set; }
         public decimal Price { get; set; }
     }
 }

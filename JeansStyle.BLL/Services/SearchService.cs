@@ -28,7 +28,7 @@ namespace JeansStyle.BLL.Services
         public SearchResponse GetProductsByTitleAndDescription(string keyword)
         {
             var searchResponse = new SearchResponse();
-            searchResponse.Products = _repository.FindAllWhere(p => p.Title == keyword);
+            searchResponse.Products = _repository.FindAllWhere(p => p.Title.Contains(keyword));
             searchResponse.Products.AddRange(_repository.FindAllWhere(p => p.Description.Contains(keyword)));
             return searchResponse;
         }

@@ -32,7 +32,6 @@ namespace JeansStyle.BLL.Services
             var season = _seasonRepository.FindAllWhere(s => s.Name == productDto.Season.ToString());
             var productModelForMapping = new ProductModelForMapping
             {
-                Amount = productDto.Amount,
                 Season = season,
                 Category = productDto.Category,
                 Gender=productDto.Gender,   

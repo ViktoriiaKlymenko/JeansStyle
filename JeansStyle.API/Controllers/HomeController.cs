@@ -27,7 +27,7 @@ namespace JeansStyle.API.Controllers
             if (ModelState.IsValid)
             {
                 var products = _searchService.GetProductsByTitleAndDescription(searchRequest.Request);
-                if(products.Products.Count == 0)
+                if (products.Products.Count == 0)
                 {
                     ViewBag.Request = searchRequest;
                     return View("NotFound");
@@ -59,8 +59,6 @@ namespace JeansStyle.API.Controllers
         [HttpGet]
         public async Task<ActionResult<SearchResponse>> GetProductByCategory([FromQuery] string category)
         {
-
-            ViewBag.ActionType = "GetProductsByCategory";
             if (ModelState.IsValid)
             {
                 try
@@ -70,12 +68,12 @@ namespace JeansStyle.API.Controllers
                     ViewBag.Products = products;
                     return View("GetProducts");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     ViewBag.Message = category;
                     return View("NotFound");
-                }    
-                
+                }
+
             }
 
             return BadRequest(ModelState);
