@@ -1,1 +1,29 @@
 ﻿@model JeansStyle.API.Models.ProductSize
+
+@{
+    var sizes = ViewBag.Sizes as List<Size>;
+    var product = ViewBag.Product as List<Product>;
+}
+@ViewBag.Product
+@ViewBag.Sizes
+
+<label for="season">Choose the size:</label>
+<br />
+<select multiple name="size">
+    @foreach(var size in sizes)
+    {
+        <option value=@size>@size.Name</option>
+    }
+
+</select>
+<br />
+<br />
+
+<label for="gender">Choose the product:</label>
+<select name="gender">
+    <option value=0>Male</option>
+    <option value=1>Female</option>
+    <option value=2>Unisex</option>
+</select>
+<br />
+<br />

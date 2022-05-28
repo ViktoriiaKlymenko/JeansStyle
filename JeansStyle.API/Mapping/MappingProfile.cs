@@ -17,6 +17,7 @@ namespace JeansStyle.API.Mapping
             CreateMap<ProductDto, ProductModelForMapping>().ReverseMap();
             CreateMap<CategoriesByGender, CategoriesByGenderViewModel>().ReverseMap();
             CreateMap<ProductSizeDto, ProductSize>().ReverseMap();
+            CreateMap<SizeDto, Size>().ReverseMap();
         }
     }
 }
