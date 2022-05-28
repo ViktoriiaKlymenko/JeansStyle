@@ -1,4 +1,27 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
 
-// Write your JavaScript code.
+})
+
+function addToCookies(id, productSizeId = null) {
+    let cart = JSON.parse(localStorage.getItem('cartProducts'))
+
+    if (!cart) {
+        cart = []
+    }
+
+    let productInCart = cart.find(product => {
+        return product.id === id && product.productSizeId === productSizeId
+    })
+
+    if (productInCart) {
+        productInCart.quantity++
+    } else {
+        cart.push({
+            productId: id,
+            productSizeId: productSizeId,
+            quantity: 1,
+        })
+    }
+
+    localStorage.setItem('cartProducts', JSON.stringify(cart))
+}

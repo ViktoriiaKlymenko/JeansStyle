@@ -1,4 +1,8 @@
-﻿<div class="main-content">
+﻿@{
+    ViewData["Title"] = "Catalog";
+}
+
+<div class="main-content">
     <div class="container">
         <br>
         <br>
@@ -12,13 +16,18 @@
                             <div class="surprise-bubble">
                                 <span class="dress-card-heart">
                                     <i class="fas fa-heart"></i>
-                                </span><a href="#"> <span>More</span></a>
+                                </span>
+                                <a href="#">
+                                    <span>More</span>
+                                </a>
                             </div>
                         </div>
                         <div class="dress-card-body">
                             <h4 class="dress-card-title">@product.Title</h4>
                             <p class="dress-card-para">Made with love</p>
-                            <p class="dress-card-para"><span class="dress-card-price">Rs.839 &ensp;</span><span class="dress-card-crossed">Rs.2099</span><span class="dress-card-off">&ensp;(60% OFF)</span></p>
+                            <p class="dress-card-para">
+                                <span class="dress-card-price">Rs.839 &ensp;</span><span class="dress-card-crossed">Rs.2099</span><span class="dress-card-off">&ensp;(60% OFF)</span>
+                            </p>
 
                         </div>
                     </div>
@@ -29,27 +38,15 @@
                         <p>Description: @product.Description</p>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 card-button" onclick="addToCookies()"><div class="card-button-inner bag-button">Add to Bag</div></div>
-                        <div class="col-md-6 card-button"><div class="card-button-inner wish-button">Whishlist</div></div>
+                        <button class="btn col-md-6 card-button" onclick="addToCookies('@product.Id')">
+                            <div class="card-button-inner bag-button">Add to Bag</div>
+                        </button>
+                        <button class="btn col-md-6 card-button">
+                            <div class="card-button-inner wish-button">Whishlist</div>
+                        </button>
                     </div>
                 </div>
-
-                <script>
-
-                    var cart = {
-                        item: @product,
-                        qty: 1
-
-                    };
-                                            function addToCookies() {
-                                         sessionStorage.setItem("cart", cart);
-                                        }
-                                        var cart = sessionStorage.getItem( "cart" );
-console.log( cart ); // '120', a string
-                </script>
-
             </div>
         }
     </div>
 </div>
-
