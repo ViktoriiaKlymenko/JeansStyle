@@ -19,13 +19,17 @@ namespace JeansStyle.API.Controllers
     {
         private readonly ISearchService _searchService;
         private readonly IAdminService _adminService;
+        private readonly ISizeService _sizeService; 
+        private readonly IProductSizeService _productSizeService;
         private readonly IMapper _mapper;
 
-        public AdminController(ISearchService searchService, IAdminService adminService, IMapper mapper)
+        public AdminController(ISearchService searchService, IAdminService adminService, IMapper mapper, ISizeService sizeService, IProductSizeService productSizeService)
         {
             _searchService = searchService;
             _adminService = adminService;
             _mapper = mapper;
+            _sizeService = sizeService;
+            _productSizeService = productSizeService;   
         }
 
         public ActionResult Delete(Guid id)
@@ -40,13 +44,18 @@ namespace JeansStyle.API.Controllers
         {
             var productDto = _searchService.GetById(id);
             ViewBag.Product = _mapper.Map<Product>(productDto);
+            ViewBag.Sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddProductSizes(Product product, int amount, Size size)
+        public ActionResult AddProductSize(ProductSize productSize)
         {
-            ViewBag.Products = _searchService.GetAll().Products;
+            if(ModelState.IsValid)
+            {
+                var productSizeDto = _mapper.Map<ProductSizeDto>(productSize);
+                _productSizeService.AddProductSizes(productSizeDto);
+            }
             return View();
         }
 

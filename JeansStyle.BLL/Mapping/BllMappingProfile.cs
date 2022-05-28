@@ -10,6 +10,8 @@ namespace JeansStyle.BLL.Mapping
         {
             CreateMap<ProductModelForMapping, Product>().ReverseMap();
             CreateMap<CategoryDto, Category>().ReverseMap();
+            CreateMap<SizeDto, Size>().ReverseMap();
+            CreateMap<ProductSizeDto, ProductSize>().ReverseMap();  
         }
     }
 }
