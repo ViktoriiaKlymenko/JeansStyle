@@ -28,6 +28,11 @@ namespace JeansStyle.API.Controllers
             _mapper = mapper;
         }
 
+        public ActionResult Index()
+        {
+            return RedirectToAction("Create");
+        }
+
         public ActionResult Delete(Guid id)
         {
             var product = _searchService.GetById(id);
