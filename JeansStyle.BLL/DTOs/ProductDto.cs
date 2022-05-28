@@ -19,9 +19,6 @@ namespace JeansStyle.BLL.DTOs
         public Gender Gender { get; set; }
         public string Image { get; set; }
 
-        public Size Size { get; set; }
-
-        public int Amount { get; set; }
         public decimal Price { get; set; }
     }
 }

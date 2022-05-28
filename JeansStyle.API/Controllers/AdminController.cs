@@ -40,6 +40,21 @@ namespace JeansStyle.API.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult AddProductSizes(Guid id)
+        {
+            var productDto = _searchService.GetById(id);
+            ViewBag.Product = _mapper.Map<Product>(productDto);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProductSizes(Product product, int amount, Size size)
+        {
+            ViewBag.Products = _searchService.GetAll().Products;
+            return View();
+        }
+
         public ActionResult GetProducts()
         {
             ViewBag.Products = _searchService.GetAll().Products;
@@ -63,8 +78,8 @@ namespace JeansStyle.API.Controllers
 
             if (ModelState.IsValid)
             {
-                string filePath = "wwwroot/images/clothes/" + product.Image.FileName;
-                using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
+                string filePath = "/images/clothes/" + product.Image.FileName;
+                using (var fileStream = new FileStream("wwwroot"+filePath, FileMode.OpenOrCreate))
                 {
                     await product.Image.CopyToAsync(fileStream);
                 }
@@ -83,8 +98,7 @@ namespace JeansStyle.API.Controllers
                     Season = product.Season,
                     Gender = product.Gender,
                     Image = filePath,
-                    Size = product.Size,
-                    Amount = product.Amount,
+Price = product.Price,
                 };
 
                 var productDto = _mapper.Map<ProductDto>(productModelForMapping);

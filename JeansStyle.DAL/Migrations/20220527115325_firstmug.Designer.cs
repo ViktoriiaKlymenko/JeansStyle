@@ -4,14 +4,16 @@ using JeansStyle.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JeansStyle.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220527115325_firstmug")]
+    partial class firstmug
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,6 +80,9 @@ namespace JeansStyle.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -112,7 +117,7 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ProductId")
+                    b.Property<Guid?>("ProductsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("SizeId")
@@ -120,7 +125,7 @@ namespace JeansStyle.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsId");
 
                     b.HasIndex("SizeId");
 
@@ -237,15 +242,15 @@ namespace JeansStyle.DAL.Migrations
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.ProductSize", b =>
                 {
-                    b.HasOne("JeansStyle.DAL.Domain.Models.Product", "Product")
-                        .WithMany("ProductSizes")
-                        .HasForeignKey("ProductId");
+                    b.HasOne("JeansStyle.DAL.Domain.Models.Product", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductsId");
 
                     b.HasOne("JeansStyle.DAL.Domain.Models.Size", "Size")
                         .WithMany()
                         .HasForeignKey("SizeId");
 
-                    b.Navigation("Product");
+                    b.Navigation("Products");
 
                     b.Navigation("Size");
                 });
@@ -292,11 +297,6 @@ namespace JeansStyle.DAL.Migrations
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Product", b =>
-                {
-                    b.Navigation("ProductSizes");
                 });
 #pragma warning restore 612, 618
         }
