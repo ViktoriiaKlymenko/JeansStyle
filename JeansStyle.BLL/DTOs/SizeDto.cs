@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace JeansStyle.API.Models
+namespace JeansStyle.BLL.DTOs
 {
-    public class Size
+    public class SizeDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

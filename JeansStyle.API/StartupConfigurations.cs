@@ -27,6 +27,7 @@ namespace JeansStyle.API
         {
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ISizeService, SizeService>();
 
             return services;
         }
