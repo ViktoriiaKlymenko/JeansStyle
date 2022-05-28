@@ -40,7 +40,7 @@ namespace JeansStyle.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddProductSizes(Guid id)
+        public ActionResult AddProductSize(Guid id)
         {
             var productDto = _searchService.GetById(id);
             ViewBag.Product = _mapper.Map<Product>(productDto);
