@@ -22,7 +22,7 @@ namespace JeansStyle.API.Controllers
             _searchService = searchService;
         }
 
-        public async Task<ActionResult<SearchResponse>> GetProducts([FromQuery] SearchRequest searchRequest)
+        public ActionResult GetProducts([FromQuery] SearchRequest searchRequest)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace JeansStyle.API.Controllers
             return View("NotFound");
         }
 
-        public async Task<ActionResult<SearchResponse>> GetProductCard([FromQuery] string searchRequest)
+        public ActionResult GetProductCard([FromQuery] string searchRequest)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace JeansStyle.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<SearchResponse>> GetProductByCategory([FromQuery] string category)
+        public ActionResult GetProductByCategory([FromQuery] string category)
         {
             if (ModelState.IsValid)
             {
