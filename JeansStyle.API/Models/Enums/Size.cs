@@ -1,15 +1,10 @@
-﻿namespace JeansStyle.API.Models
+﻿using System;
+
+namespace JeansStyle.API.Models
 {
-    public enum Size
+    public class Size
     {
-        XS = 0,
-        S = 1,
-        M = 2,
-        L = 3,
-        XL = 4,
-        XXL = 5,
-        XXXL = 6,
-        XXXXL = 7,
-        XXXXXL = 8
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

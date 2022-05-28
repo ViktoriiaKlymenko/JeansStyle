@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JeansStyle.API.Models;
 using JeansStyle.BLL.DTOs;
+using JeansStyle.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace JeansStyle.API.Mapping
         {
             CreateMap<CategoryDto, Category>().ReverseMap();
             CreateMap<ProductDto, ProductModelForMapping>().ReverseMap();
-           
+            CreateMap<CategoriesByGender, CategoriesByGenderViewModel>().ReverseMap();
+            CreateMap<ProductSizeDto, ProductSize>().ReverseMap();
         }
     }
 }

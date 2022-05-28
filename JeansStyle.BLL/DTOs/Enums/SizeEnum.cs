@@ -1,6 +1,6 @@
 ﻿namespace JeansStyle.BLL.DTOs.Enums
 {
-    public enum Size
+    public enum SizeEnum
     {
         XS = 0,
         S = 1,

@@ -8,7 +8,7 @@ namespace JeansStyle.DAL.Domain.Models
     public class ProductSize
     {
         public Guid Id { get; set; }
-        public Product Products { get; set; }
+        public Product Product { get; set; }
         public int Amount { get; set; }
         public Size Size { get; set; }
     }

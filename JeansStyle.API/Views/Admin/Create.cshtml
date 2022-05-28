@@ -1,19 +1,20 @@
 ﻿@model JeansStyle.API.Models.Product
 @{
-    Layout = null;
+    Layout = "_Admin";
+    ViewData["Title"] = "Product creating";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Customer Form</title>
-</head>
+@section Breadcrumbs
+{
+    <li class="breadcrumb-item">Products</li>
+}
+
 <div class="main-content">
     <form method="post" enctype="multipart/form-data">
-        <label for="title">Title:</label><br />
-        <input type="text" name="title" /><br /><br />
+        <label for="title">Title:</label><br/>
+        <input type="text" name="title"/><br/><br/>
 
-        <label for="size">Choose a size:</label><br />
+        <label for="size">Choose a size:</label><br/>
         <select name="sizes">
             <option value=0>XS</option>
             <option value=1>S</option>
@@ -24,13 +25,13 @@
             <option value=6>XXXL</option>
             <option value=7>XXXXL</option>
             <option value=8>XXXXXL</option>
-        </select><br /><br />
+        </select><br/><br/>
 
-        <label>Amount:</label><br />
-        <input type="amount" name="amount" /><br /><br />
+        <label>Amount:</label><br/>
+        <input type="amount" name="amount"/><br/><br/>
 
-        <label>Description:</label><br />
-        <input type="description" name="description" /><br /><br />
+        <label>Description:</label><br/>
+        <input type="description" name="description"/><br/><br/>
 
         @* <label for="category">Choose a category:</label><br />
             <select name="category">
@@ -39,7 +40,7 @@
             <option value=@category>@category.Name</option>
             }
             </select><br /><br />*@
-        <label for="category">Choose the category:</label><br />
+        <label for="category">Choose the category:</label><br/>
         <select multiple name="category">
             <option value="Jeans">Jeans</option>
             <option value="T-shirt"> T-shirt </option>
@@ -52,23 +53,23 @@
             <option value="Pullover"> Pullover</option>
             <option value="Skirt">Skirt </option>
             <option value="Dress">Dress</option>
-        </select><br /><br />
+        </select><br/><br/>
 
-        <label for="season">Choose the season:</label><br />
+        <label for="season">Choose the season:</label><br/>
         <select multiple name="season">
             <option value=0>Winter</option>
             <option value=1>Spring</option>
             <option value=2>Summer</option>
             <option value=3>Autumn</option>
 
-        </select><br /><br />
+        </select><br/><br/>
 
         <label for="gender">Choose the gender:</label>
         <select name="gender">
             <option value=0>Male</option>
             <option value=1>Female</option>
             <option value=2>Unisex</option>
-        </select><br /><br />
+        </select><br/><br/>
 
         <div class="form-group">
             <label asp-for=@Model.Image class="control-label"></label>
@@ -79,18 +80,18 @@
             <span asp-validation-for=@Model.Image class="text-danger"></span>
         </div>
 
-        <input type="submit" value="Send" />
+        <input type="submit" value="Send"/>
     </form>
-
 
 
     <p>
         @Html.ActionLink("Delete", "Delete") |
         @Html.ActionLink("Back to List", "GetProducts")
     </p>
-</html>
+</div>
+
 @section scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
 
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function () {

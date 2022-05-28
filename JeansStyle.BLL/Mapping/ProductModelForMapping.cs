@@ -15,7 +15,6 @@ namespace JeansStyle.BLL.Mapping
         public List<DAL.Domain.Models.Season> Season { get; set; }
         public Gender Gender { get; set; }
         public string Image { get; set; }
-        public int Amount { get; set; }
         public decimal Price { get; set; }
     }
 }

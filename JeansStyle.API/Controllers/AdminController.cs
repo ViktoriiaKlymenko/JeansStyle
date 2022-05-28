@@ -19,19 +19,48 @@ namespace JeansStyle.API.Controllers
     {
         private readonly ISearchService _searchService;
         private readonly IAdminService _adminService;
+        private readonly ISizeService _sizeService; 
+        private readonly IProductSizeService _productSizeService;
         private readonly IMapper _mapper;
 
-        public AdminController(ISearchService searchService, IAdminService adminService, IMapper mapper)
+        public AdminController(ISearchService searchService, IAdminService adminService, IMapper mapper, ISizeService sizeService, IProductSizeService productSizeService)
         {
             _searchService = searchService;
             _adminService = adminService;
             _mapper = mapper;
+            _sizeService = sizeService;
+            _productSizeService = productSizeService;   
+        }
+
+        public ActionResult Index()
+        {
+            return RedirectToAction("Create");
         }
 
         public ActionResult Delete(Guid id)
         {
             var product = _searchService.GetById(id);
             _adminService.DeleteProduct(product);
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult AddProductSize(Guid id)
+        {
+            var productDto = _searchService.GetById(id);
+            ViewBag.Product = _mapper.Map<Product>(productDto);
+            ViewBag.Sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProductSize(ProductSize productSize)
+        {
+            if(ModelState.IsValid)
+            {
+                var productSizeDto = _mapper.Map<ProductSizeDto>(productSize);
+                _productSizeService.AddProductSizes(productSizeDto);
+            }
             return View();
         }
 
@@ -58,8 +87,8 @@ namespace JeansStyle.API.Controllers
 
             if (ModelState.IsValid)
             {
-                string filePath = "wwwroot/images/clothes/" + product.Image.FileName;
-                using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
+                string filePath = "/images/clothes/" + product.Image.FileName;
+                using (var fileStream = new FileStream("wwwroot"+filePath, FileMode.OpenOrCreate))
                 {
                     await product.Image.CopyToAsync(fileStream);
                 }
@@ -78,8 +107,7 @@ namespace JeansStyle.API.Controllers
                     Season = product.Season,
                     Gender = product.Gender,
                     Image = filePath,
-                    Size = product.Size,
-                    Amount = product.Amount,
+Price = product.Price,
                 };
 
                 var productDto = _mapper.Map<ProductDto>(productModelForMapping);
