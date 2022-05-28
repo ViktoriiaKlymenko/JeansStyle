@@ -44,10 +44,35 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a asp-controller="Admin" asp-action="GetProducts" class="nav-link active">
-                            <i class="fa-solid fa-shirt nav-icon"></i>
-                            Products
+                        <a asp-controller="Admin" asp-action="Index" class="nav-link">
+                            <i class="fa-solid fa-gauge-high nav-icon"></i>
+                            Dashboard
                         </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">
+                            <i class="fa-solid fa-shirt nav-icon"></i>
+                            <p>
+                                Products
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-controller="Admin" asp-action="Create" class="nav-link">
+                                    <i class="fa-solid fa-plus nav-icon"></i>
+                                    <p>Add product</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Admin" asp-action="GetProducts" class="nav-link">
+                                    <i class="fa-solid fa-list nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -87,6 +112,7 @@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/admin.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </div>

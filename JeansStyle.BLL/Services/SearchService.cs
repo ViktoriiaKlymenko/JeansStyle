@@ -79,6 +79,11 @@ namespace JeansStyle.BLL.Services
             return searchResponse;
         }
 
+        public int Count()
+        {
+            return _repository.Count();
+        }
+
         public ProductDto GetById(Guid id)
         {
             var product = _repository.FindWhere(p => p.Id == id);

@@ -1,45 +1,54 @@
 ﻿@{
-    Layout = null;
+    Layout = "_Admin";
+    ViewData["Title"] = "Products";
 }
-<div class="main-content">
-    <a href="~/Admin/Create/"><b>Add new product</b></a>
 
-    @foreach (var product in ViewBag.Products)
-    {
-        
-            <div class="col-md-3">
-                 <img class="image" src="@product.Image" alt="">
-                </div>
-           <div class="col-md-9">
-                <div class="card" id=@product.Id>
-                    <div class="description">
-                        <p><b>Title:</b> @product.Title</p>
-                    </div>
+<div class="row">
+    <div class="card col-12">
+        <div class="card-header">
+            <a asp-controller="Admin" asp-action="Create" class="btn btn-success">
+                <i class="fa-solid fa-plus"></i>
+                Add new product
+            </a>
+        </div>
 
-                    <div class="description">
-                        <p><b>Description: </b>@product.Description</p>
-                    </div>
-
-                    <div class="description">
-                        <p><b>Gender:</b> @product.Gender</p>
-                    </div>
-
-                    <div class="description">
-                        <p><b>Image:</b> @product.Image</p>
-                    </div>
-                    <br>
-                    <p>
-                        @Html.ActionLink("Delete", "Delete", new{id=@product.Id}) |
-                        @Html.ActionLink("Back to List", "Index")
-                    </p>
-                </div>
-            </div>
-            <p></p>
-    }
+        <div class="card-body table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Title</td>
+                    <td>Image</td>
+                    <td>Description</td>
+                    <td>Gender</td>
+                    <td style="min-width: 100px;"></td>
+                </tr>
+                </thead>
+                @foreach (var product in ViewBag.Products)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>@product.Title</td>
+                        <td>@product.Image</td>
+                        <td>@product.Description</td>
+                        <td>@product.Gender</td>
+                        <td>
+                            <div class="d-flex">
+                                <a href="javascript:void(0)" class="btn btn-outline-warning mr-1">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a
+                                    asp-controller="Admin"
+                                    asp-action="Delete"
+                                    asp-route-id="@product.Id"
+                                    class="btn btn-outline-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
 </div>
-
-<style>
-    .card {
-        padding-top: 10px;
-    }
-</style>

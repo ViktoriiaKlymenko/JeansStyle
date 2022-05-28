@@ -34,14 +34,15 @@ namespace JeansStyle.API.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("Create");
+            ViewBag.ProductsCount = _searchService.Count();
+            return View();
         }
 
         public ActionResult Delete(Guid id)
         {
             var product = _searchService.GetById(id);
             _adminService.DeleteProduct(product);
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

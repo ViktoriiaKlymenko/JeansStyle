@@ -8,6 +8,7 @@ namespace JeansStyle.DAL.Data.RepositoryInterfaces
     {
         List<T> FindAllWhere(Func<T, bool> predicate);
         T FindWhere(Func<T, bool> predicate);
+        int Count();
         List<T> GetAll();
         void Add(T item);
         void Update(T item);

@@ -10,6 +10,7 @@ namespace JeansStyle.BLL.Interfaces
     {
         SearchResponse GetProductsByTitleAndDescription(string keyword);
         //SearchResponse GetAllByCategory(string category);
+        int Count();
         SearchResponse GetAll();
         IEnumerable<string> GetAllCategoriesNames();
         List<CategoryDto> GetAllCategories();

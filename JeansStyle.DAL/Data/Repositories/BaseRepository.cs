@@ -36,6 +36,11 @@ namespace JeansStyle.DAL.Data.Repositories
             return _context.Set<T>().ToList();
         }
 
+        public int Count()
+        {
+            return _context.Set<T>().Count();
+        }
+
         public void Add(T item)
         {
             _context.Set<T>().Add(item);

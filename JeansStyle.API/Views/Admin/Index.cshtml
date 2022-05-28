@@ -1,0 +1,24 @@
+﻿@model object
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_Admin";
+}
+
+<div class="row">
+    <div class="col-6 col-lg-3">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@ViewBag.ProductsCount</h3>
+                <p>Products</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a asp-controller="Admin" asp-action="GetProducts" class="small-box-footer">
+                Go to products 
+                <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
