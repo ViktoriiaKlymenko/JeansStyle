@@ -39,6 +39,7 @@ namespace JeansStyle.API
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IBaseRepository<Product>, BaseRepository<Product>>();
+            services.AddScoped<IBaseRepository<ProductSize>, BaseRepository<ProductSize>>();
             services.AddScoped<IBaseRepository<Category>, BaseRepository<Category>>();
             services.AddScoped<IBaseRepository<Season>, BaseRepository<Season>>();
             services.AddScoped<IBaseRepository<Size>, BaseRepository<Size>>();
