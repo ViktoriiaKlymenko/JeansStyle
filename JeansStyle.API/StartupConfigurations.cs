@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,9 @@ namespace JeansStyle.API
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ISizeService, SizeService>();
+            services.AddScoped<IProductSizeService, ProductSizeService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             return services;
         }
@@ -37,6 +41,8 @@ namespace JeansStyle.API
             services.AddScoped<IBaseRepository<Product>, BaseRepository<Product>>();
             services.AddScoped<IBaseRepository<Category>, BaseRepository<Category>>();
             services.AddScoped<IBaseRepository<Season>, BaseRepository<Season>>();
+            services.AddScoped<IBaseRepository<Size>, BaseRepository<Size>>();
+            
             return services;
         }
 
