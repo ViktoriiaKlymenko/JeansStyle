@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\JeansStyle2022\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {}
+    "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {}
   },
   "projects": {
-    "C:\\JeansStyle2022\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {
+    "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\JeansStyle2022\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
         "projectName": "JeansStyle.BLL",
-        "projectPath": "C:\\JeansStyle2022\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
-        "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-        "outputPath": "C:\\JeansStyle2022\\JeansStyle.BLL\\obj\\",
+        "projectPath": "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.BLL\\JeansStyle.BLL.csproj",
+        "packagesPath": "C:\\Users\\alexs\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alexs\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
-                "projectPath": "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj"
+              "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
+                "projectPath": "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj"
               }
             }
           }
@@ -67,21 +67,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
+    "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
         "projectName": "JeansStyle.DAL",
-        "projectPath": "C:\\JeansStyle2022\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
-        "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-        "outputPath": "C:\\JeansStyle2022\\JeansStyle.DAL\\obj\\",
+        "projectPath": "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.DAL\\JeansStyle.DAL.csproj",
+        "packagesPath": "C:\\Users\\alexs\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexs\\RiderProjects\\JeansStyle\\JeansStyle.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alexs\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -109,7 +109,7 @@
           "dependencies": {
             "EntityFramework": {
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[6.4.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -134,7 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

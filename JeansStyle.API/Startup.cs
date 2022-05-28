@@ -29,6 +29,7 @@ namespace JeansStyle.API
             services.AddRepositories();
             services.SetMapper();
             services.AddBllServices();
+            services.AddMvc().AddRazorRuntimeCompilation();
         }
       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
