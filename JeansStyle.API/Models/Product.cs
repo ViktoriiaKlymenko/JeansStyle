@@ -17,7 +17,7 @@ namespace JeansStyle.API.Models
         [StringLength(500)]
         public string Description { get; set; }
         [Required]
-        public string Category { get; set; }
+        public Category Category { get; set; }
         [Required]
         public List<Season> Season { get; set; }
         [Required]

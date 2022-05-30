@@ -9,16 +9,12 @@
                     <div class="dress-card">
                         <div class="dress-card-head">
                             <img class="dress-card-img-top" src="@product.Image" alt="">
-                            <div class="surprise-bubble">
-                                <span class="dress-card-heart">
-                                    <i class="fas fa-heart"></i>
-                                </span><a href="#"> <span>More</span></a>
-                            </div>
+==
                         </div>
                         <div class="dress-card-body">
                             <h4 class="dress-card-title">@product.Title</h4>
                             <p class="dress-card-para">Made with love</p>
-                            <p class="dress-card-para"><span class="dress-card-price">Rs.839 &ensp;</span><span class="dress-card-crossed">Rs.2099</span><span class="dress-card-off">&ensp;(60% OFF)</span></p>
+                            <p class="dress-card-para"><span class="dress-card-price">@Math.Round(@product.Price, 2) &#36;</span><span class="dress-card-crossed"></span><span class="dress-card-off"></span></p>
 
                         </div>
                     </div>
@@ -33,20 +29,6 @@
                         <div class="col-md-6 card-button"><div class="card-button-inner wish-button">Whishlist</div></div>
                     </div>
                 </div>
-
-                <script>
-
-                    var cart = {
-                        item: @product,
-                        qty: 1
-
-                    };
-                                            function addToCookies() {
-                                         sessionStorage.setItem("cart", cart);
-                                        }
-                                        var cart = sessionStorage.getItem( "cart" );
-console.log( cart ); // '120', a string
-                </script>
 
             </div>
         }

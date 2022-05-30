@@ -2,7 +2,7 @@
 @model JeansStyle.API.Models.Product
 @{
     Layout = "_Admin";
-    ViewData["Title"] = "Product creating";
+    ViewData["Title"] = "Product updating";
     var categories = ViewBag.Categories as List<CategoryDto>;
 }
 
@@ -13,14 +13,17 @@
 
 <div class="main-content">
     <form method="post" enctype="multipart/form-data">
+        <input type="text" value=@Model.Id name="id" /><br /><br />
+
+
         <label for="title">Title:</label><br />
-        <input type="text" name="title" /><br /><br />
+        <input type="text" value=@Model.Title name="title" /><br /><br />
 
         <label for="price">Price:</label><br />
-        <input type="text" name="price" /><br /><br />
+        <input type="text" value=@Model.Price name="price" /><br /><br />
 
         <label>Description:</label><br />
-        <input type="description" name="description" /><br /><br />
+        <input type="description" value=@Model.Description name="description" /><br /><br />
 
 
         <select multiple name="category">
@@ -32,7 +35,7 @@
         </select>
 
         <label for="season">Choose the season:</label><br />
-        <select multiple name="season">
+        <select value=@Model.Season multiple name="season">
             <option value=0>Winter</option>
             <option value=1>Spring</option>
             <option value=2>Summer</option>
@@ -41,7 +44,7 @@
         </select><br /><br />
 
         <label for="gender">Choose the gender:</label>
-        <select name="gender">
+        <select value=@Model.Gender name="gender">
             <option value=0>Male</option>
             <option value=1>Female</option>
             <option value=2>Unisex</option>

@@ -66,5 +66,23 @@ namespace JeansStyle.BLL.Services
 
             return searchResponse;
         }
+
+        public void Update(Guid productId, ProductDto productDto)
+        {
+            var season = _seasonRepository.FindAllWhere(s => s.Name == productDto.Season.ToString());
+            var productModelForMapping = new ProductModelForMapping
+            {
+                Season = season,
+                Category = productDto.Category,
+                Gender = productDto.Gender,
+                Description = productDto.Description,
+                Image = productDto.Image,
+                Price = productDto.Price,
+                Title = productDto.Title
+            };
+            var product = _mapper.Map<Product>(productModelForMapping);
+
+            _repository.Update(product);
+        }
     }
 }

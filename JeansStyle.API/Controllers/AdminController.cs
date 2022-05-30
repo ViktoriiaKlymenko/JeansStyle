@@ -40,8 +40,8 @@ namespace JeansStyle.API.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            var product = _searchService.GetById(id);
-            _adminService.DeleteProduct(product);
+            var productDto = _searchService.GetById(id);
+            _adminService.DeleteProduct(productDto);
             return RedirectToAction("Index");
         }
 
@@ -76,7 +76,7 @@ namespace JeansStyle.API.Controllers
         public ActionResult Create()
         {
             var categories = _searchService.GetAllCategories();
-           
+
             ViewBag.Categories = categories;
 
             return View();
@@ -95,17 +95,11 @@ namespace JeansStyle.API.Controllers
                     await product.Image.CopyToAsync(fileStream);
                 }
 
-                var category = new Category
-                {
-                    Id = _searchService.GetCategoryIdByName(product.Category),
-                    Name = product.Category
-                };
-
                 var productModelForMapping = new ProductModelForMapping
                 {
                     Title = String.Join(" ", product.Title.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)),
                     Description = product.Description,
-                    Category = category,
+                    Category = product.Category,
                     Season = product.Season,
                     Gender = product.Gender,
                     Image = filePath,
@@ -120,5 +114,54 @@ namespace JeansStyle.API.Controllers
 
             return View(product);
         }
+
+
+        [HttpGet]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Update(Guid id)
+        {
+            var categories = _searchService.GetAllCategories();
+            var product = _mapper.Map<Product>(_searchService.GetById(id));
+            ViewBag.Categories = categories;
+
+
+            return View(product);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> Update()
+        {
+            var product = new Product();
+
+            if (ModelState.IsValid)
+            {
+                string filePath = "/images/clothes/" + product.Image.FileName;
+                using (var fileStream = new FileStream("wwwroot" + filePath, FileMode.OpenOrCreate))
+                {
+                    await product.Image.CopyToAsync(fileStream);
+                }
+
+                var productModelForMapping = new ProductModelForMapping
+                {
+                    Title = String.Join(" ", product.Title.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)),
+                    Description = product.Description,
+                    Category = product.Category,
+                    Season = product.Season,
+                    Gender = product.Gender,
+                    Image = filePath,
+                    Price = product.Price,
+                };
+
+                var productDto = _mapper.Map<ProductDto>(productModelForMapping);
+
+                _adminService.Update(product.Id, productDto);
+                return RedirectToAction("GetProducts");
+            }
+
+            return View(product);
+        }
     }
+
 }
+
