@@ -1,5 +1,8 @@
-﻿@{
+﻿@model JeansStyle.WEB.Models.Enums.Size
+@using JeansStyle.WEB.Models.Enums
+@{
     ViewData["Title"] = "Catalog";
+   var sizes = ViewBag.Sizes as List<Size>;
 }
 
 <div class="main-content">
@@ -28,6 +31,10 @@
                     <div class="description">
                         <p>Gender: @product.Gender.Name</p>
                         <p>Category: @product.Category.Name</p>
+                        <div class="form-group">
+             <label for="Season">Size:</label>
+            @Html.DropDownListFor(model => model.Id,  (IEnumerable<SelectListItem>)ViewBag.Sizes)
+        </div>
    
                         <p>Description: @product.Description</p>
                     </div>

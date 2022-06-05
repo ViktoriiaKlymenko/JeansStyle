@@ -4,6 +4,7 @@ using JeansStyle.BLL.Interfaces;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JeansStyle.BLL.Services
 {
@@ -19,7 +20,7 @@ namespace JeansStyle.BLL.Services
 
         public List<SizeDto> GetAll()
         {
-            return _mapper.Map<List<SizeDto>>(_sizeRepository.GetAll());
+            return _mapper.Map<List<SizeDto>>(_sizeRepository.GetAll().OrderBy(s=>s.Name));
         }
     }
 }

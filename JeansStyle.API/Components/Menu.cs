@@ -19,12 +19,12 @@ namespace JeansStyle.WEB.Components
             _categoryService = categoryService;
         }
 
-        public IViewComponentResult Invoke()
-        {
-            var modelDto = _categoryService.GetCategoriesByGender();
-            var model = _mapper.Map<CategoriesByGenderViewModel>(modelDto);
+        //public IViewComponentResult Invoke()
+        //{
+        //    var modelDto = _categoryService.GetCategoriesByGender();
+        //    var model = _mapper.Map<CategoriesByGenderViewModel>(modelDto);
 
-            return View("_PartialView", model);
-        }
+        //    return View("_PartialView", model);
+        //}
     }
 }
