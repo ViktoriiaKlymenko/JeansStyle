@@ -35,9 +35,18 @@ namespace JeansStyle.WEB.Controllers
         public ActionResult GetProductSizes(Guid id)
         {
             var productDto = _searchService.GetById(id);
+            var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
             //var productSizes = _searchService.GetProductSizesById(id);
+            var sizeSelect = new List<SelectListItem>();
+            foreach (var size in sizes)
+            {
+                SelectListItem c = new SelectListItem();
+                c.Text = size.Name;
+                c.Value = size.Id.ToString();
+                sizeSelect.Add(c);
+            }
             ViewBag.Product = productDto;
-            ViewBag.Sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
+            ViewBag.Sizes = sizeSelect;
             return View();
         }
 

@@ -3,32 +3,28 @@ using JeansStyle.BLL.Interfaces;
 using JeansStyle.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JeansStyle.WEB.Controllers
+namespace JeansStyle.WEB.Components
 {
-    public class CategoryController : Controller
+    [ViewComponent(Name = "Menu")]
+    public class Menu
     {
         private readonly ISearchService _searchService;
         private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
 
-        public CategoryController(ISearchService searchService, IMapper mapper, ICategoryService categoryService)
+        public Menu(ISearchService searchService, IMapper mapper, ICategoryService categoryService)
         {
             _searchService = searchService;
             _mapper = mapper;
             _categoryService = categoryService;
         }
 
-        public PartialViewResult Index()
+        public IViewComponentResult Invoke()
         {
-
-
             var modelDto = _categoryService.GetCategoriesByGender();
             var model = _mapper.Map<CategoriesByGenderViewModel>(modelDto);
 
-            return PartialView("~/Views/Shared/_PartialView.cshtml", model);
-
+            return View("_PartialView", model);
         }
     }
 }
-
-

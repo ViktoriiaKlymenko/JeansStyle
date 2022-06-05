@@ -1,7 +1,7 @@
 ﻿@model CategoriesByGenderViewModel
 
 
-@*<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom mb-3">
+<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom mb-3">
     <div class="container justify-content-center">
         <ul class="d-inline-flex justify-content-center text-center">
             <li class="nav-item">
@@ -9,7 +9,7 @@
                     <button class="dropbtn">Women's</button>
 
                     <div class="dropdown-content">
-                        @foreach (var category in PModel.Women)
+                        @foreach (var category in Model.Women)
                         {
                             <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category=@category> @category.Name</a>
                         }
@@ -32,4 +32,4 @@
             </li>
         </ul>
     </div>
-</nav>*@
+</nav>

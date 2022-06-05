@@ -8,5 +8,6 @@ namespace JeansStyle.WEB.Controllers
         public Product Product { get; set; }
         public ProductSize ProductSize { get; set; }
         public int Amount { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }
