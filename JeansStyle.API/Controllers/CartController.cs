@@ -2,7 +2,6 @@
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.WEB.Models;
 using JeansStyle.WEB.Models.Enums;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -22,7 +21,7 @@ namespace JeansStyle.WEB.Controllers
 
         }
 
-        public string Index(Cart cart)
+        public string GetData(Cart cart)
         {
             var product = _mapper.Map<Product>(_searchService.GetProductById(cart.ProductId));
             var size = _mapper.Map<Size>(_searchService.GetSizeById(cart.SizeId));
@@ -40,5 +39,7 @@ namespace JeansStyle.WEB.Controllers
 
             return modelSerialized;
         }
+
+
     }
 }

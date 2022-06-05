@@ -7,21 +7,21 @@ using JeansStyle.WEB.Models;
 using JeansStyle.WEB.Models.Enums;
 using AutoMapper;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JeansStyle.WEB.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ISearchService _searchService;
         private readonly IMapper _mapper;
+        private readonly ISizeService _sizeService;
 
-        public HomeController(ILogger<HomeController> logger, ISearchService searchService, IMapper mapper)
+        public HomeController(ILogger<HomeController> logger, ISearchService searchService, IMapper mapper, ISizeService sizeService)
         {
-            _logger = logger;
             _searchService = searchService;
             _mapper = mapper;
-
+            _sizeService = sizeService;
         }
 
         public ActionResult GetProducts([FromQuery] SearchRequest searchRequest)
@@ -50,7 +50,16 @@ namespace JeansStyle.WEB.Controllers
                         Gender = _mapper.Map<Gender>(_searchService.GetGenderById(product.GenderId))
                     });
                 }
-             
+                var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
+                ViewBag.Sizes = sizes;
+                var sizesSelect = new List<SelectListItem>();
+                foreach (var size in sizes)
+                {
+                    SelectListItem c = new SelectListItem();
+                    c.Text = size.Name;
+                    c.Value = size.Id.ToString();
+                    sizesSelect.Add(c);
+                }
                 ViewBag.Products = productsToView;
                 return View();
             }
