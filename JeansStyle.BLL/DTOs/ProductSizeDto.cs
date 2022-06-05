@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JeansStyle.BLL.Mapping;
+using System;
 
 namespace JeansStyle.BLL.DTOs
 {

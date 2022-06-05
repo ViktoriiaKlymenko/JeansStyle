@@ -1,7 +1,8 @@
-﻿using System;
+﻿using JeansStyle.WEB.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace JeansStyle.API.Models
+namespace JeansStyle.WEB.Models
 {
     public class ProductSize
     {

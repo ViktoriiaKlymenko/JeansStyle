@@ -1,11 +1,11 @@
-﻿@model JeansStyle.API.Models.ProductSize
+﻿@using JeansStyle.WEB.Models.Enums
+
+@model ProductSize
 
 @{
     var sizes = ViewBag.Sizes as List<Size>;
     var product = ViewBag.Product as List<Product>;
 }
-@ViewBag.Product
-@ViewBag.Sizes
 
 <label for="season">Choose the size:</label>
 <br />
@@ -19,11 +19,5 @@
 <br />
 <br />
 
-<label for="gender">Choose the product:</label>
-<select name="gender">
-    <option value=0>Male</option>
-    <option value=1>Female</option>
-    <option value=2>Unisex</option>
-</select>
 <br />
 <br />

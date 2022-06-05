@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JeansStyle.API.Models
+namespace JeansStyle.WEB.Models.Enums
 {
     public class Size
     {

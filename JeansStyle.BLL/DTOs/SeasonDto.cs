@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace JeansStyle.DAL.Domain.Models
+namespace JeansStyle.BLL.DTOs
 {
-    public class Size
+    public class SeasonDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

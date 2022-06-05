@@ -1,9 +1,13 @@
 ﻿@using JeansStyle.BLL.DTOs
-@model JeansStyle.API.Models.Product
+@using JeansStyle.WEB.Models
+
+@model ProductViewModel
 @{
     Layout = "_Admin";
     ViewData["Title"] = "Product creating";
     var categories = ViewBag.Categories as List<CategoryDto>;
+    var seasons = ViewBag.Seasons as List<SeasonDto>;
+    var genders = ViewBag.Genders as List<GenderDto>;
 }
 
 @section Breadcrumbs
@@ -11,53 +15,72 @@
 <li class="breadcrumb-item">Products</li>
 }
 
+
+
 <div class="main-content">
-    <form method="post" enctype="multipart/form-data">
-        <label for="title">Title:</label><br />
-        <input type="text" name="title" /><br /><br />
+    @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new {enctype="multipart/form-data"}))
+    {
 
-        <label for="price">Price:</label><br />
-        <input type="text" name="price" /><br /><br />
+        <label for="title">Title:</label>
 
-        <label>Description:</label><br />
-        <input type="description" name="description" /><br /><br />
+        <br />
+        <input type="text" name="title" />
 
+        <br />
 
-        <select multiple name="category">
-            @foreach (var category in categories)
-            {
-                <option value=@category>@category.Name</option>
-            }
+        <br />
 
-        </select>
+        <label for="price">Price:</label>
 
-        <label for="season">Choose the season:</label><br />
-        <select multiple name="season">
-            <option value=0>Winter</option>
-            <option value=1>Spring</option>
-            <option value=2>Summer</option>
-            <option value=3>Autumn</option>
+        <br />
+        <input type="text" name="price" />
 
-        </select><br /><br />
+        <br />
 
-        <label for="gender">Choose the gender:</label>
-        <select name="gender">
-            <option value=0>Male</option>
-            <option value=1>Female</option>
-            <option value=2>Unisex</option>
-        </select><br /><br />
+        <br />
 
+        <label>Description:</label>
+
+        <br />
+        <input type="description" name="description" />
+
+        <br />
+
+        <br />
         <div class="form-group">
-            <label asp-for=@Model.Image class="control-label"></label>
+             <label for="Category">Category:</label>
+            @Html.DropDownListFor(model=>model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Categories)
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+             <label for="Season">Season:</label>
+            @Html.DropDownListFor(model => model.SeasonId,  (IEnumerable<SelectListItem>)ViewBag.Seasons, new { @class = "form-control", multiple = "multiple", size = "5" })
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <label for="Gender">Gender:</label>
+            @Html.DropDownListFor(model=>model.GenderId, (IEnumerable<SelectListItem>)ViewBag.Genders)
+        </div>
+        <br />
+
+        <br />
+
+         <label>Аватар</label>
+        <input name="Image" type="file" class="form-control" />
+
+        @*<div class="form-group">
+            <label asp-for="Image" class="control-label"></label>
             <div class="custom-file">
-                <input asp-for=@Model.Image class="custom-file-input" id="customFile">
+                <input asp-for="Image" class="custom-file-input" id="customFile">
                 <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
-            <span asp-validation-for=@Model.Image class="text-danger"></span>
-        </div>
+            <span asp-validation-for="Image" class="text-danger">You must choose photo</span>
+        </div>*@
 
-        <input type="submit" value="Send" />
-    </form>
+        <input type="submit" OnClientClick="return ValidateForm();" value="Send" />
+    }
 
 
     <p>

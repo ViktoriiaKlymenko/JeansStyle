@@ -1,6 +1,6 @@
 using System;
 
-namespace JeansStyle.API.Models
+namespace JeansStyle.WEB.Models
 {
     public class ErrorViewModel
     {

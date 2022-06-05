@@ -1,38 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using JeansStyle.API.Models;
-using JeansStyle.BLL.Models;
 using JeansStyle.BLL.Interfaces;
+using JeansStyle.WEB.Models;
+using JeansStyle.WEB.Models.Enums;
+using AutoMapper;
+using System.Collections.Generic;
 
-namespace JeansStyle.API.Controllers
+namespace JeansStyle.WEB.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ISearchService _searchService;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger, ISearchService searchService)
+        public HomeController(ILogger<HomeController> logger, ISearchService searchService, IMapper mapper)
         {
             _logger = logger;
             _searchService = searchService;
+            _mapper = mapper;
+
         }
 
         public ActionResult GetProducts([FromQuery] SearchRequest searchRequest)
         {
             if (ModelState.IsValid)
             {
+
                 var products = _searchService.GetProductsByTitleAndDescription(searchRequest.Request);
                 if (products.Products.Count == 0)
                 {
                     ViewBag.Request = searchRequest;
                     return View("NotFound");
                 }
-                ViewBag.Products = products.Products;
+                var productsToView = new List<Product>();
+
+                foreach (var product in products.Products)
+                {
+                    productsToView.Add(new Product
+                    {
+                        Category = _mapper.Map<Category>(_searchService.GetCategoryById(product.Category.Id)),
+                        Description = product.Description,
+                        Title = product.Title,
+                        Image = product.Image,
+                        Price = product.Price,
+                        Season = _mapper.Map<List<Season>>(product.Season),
+                        Gender = _mapper.Map<Gender>(_searchService.GetGenderById(product.GenderId))
+                    });
+                }
+             
+                ViewBag.Products = productsToView;
                 return View();
             }
             ViewBag.Message = searchRequest.Request;

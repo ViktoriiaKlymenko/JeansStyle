@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using JeansStyle.API.Models;
 using JeansStyle.BLL.Interfaces;
+using JeansStyle.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JeansStyle.API.Controllers
+namespace JeansStyle.WEB.Controllers
 {
     public class CategoryController : Controller
     {
@@ -17,12 +17,12 @@ namespace JeansStyle.API.Controllers
         {
             _searchService = searchService;
             _mapper = mapper;
-            _categoryService = categoryService; 
+            _categoryService = categoryService;
         }
 
         public PartialViewResult Index()
         {
-           
+
 
             var modelDto = _categoryService.GetCategoriesByGender();
             var model = _mapper.Map<CategoriesByGenderViewModel>(modelDto);

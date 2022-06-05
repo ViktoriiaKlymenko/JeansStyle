@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace JeansStyle.API.Controllers
+namespace JeansStyle.WEB.Controllers
 {
     public class UserController : Controller
     {
@@ -9,5 +9,7 @@ namespace JeansStyle.API.Controllers
         {
             return View();
         }
+
+
     }
 }

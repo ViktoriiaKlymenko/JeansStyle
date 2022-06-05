@@ -7,6 +7,7 @@ using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JeansStyle.BLL.Services
@@ -29,18 +30,7 @@ namespace JeansStyle.BLL.Services
 
         public void AddProduct(ProductDto productDto)
         {
-            var season = _seasonRepository.FindAllWhere(s => s.Name == productDto.Season.ToString());
-            var productModelForMapping = new ProductModelForMapping
-            {
-                Season = season,
-                Category = productDto.Category,
-                Gender=productDto.Gender,   
-                Description = productDto.Description,   
-                Image=productDto.Image, 
-                Price=productDto.Price,
-                Title = productDto.Title
-            };
-            var product = _mapper.Map<Product>(productModelForMapping);
+            var product = _mapper.Map<Product>(productDto);
             
             _repository.Add(product);
         }
@@ -61,7 +51,7 @@ namespace JeansStyle.BLL.Services
         {
             var searchResponse = new SearchResponse
             {
-                Products = _repository.GetAll()
+                Products = _mapper.Map<List<ProductDto>>(_repository.GetAll())
             };
 
             return searchResponse;
@@ -70,17 +60,8 @@ namespace JeansStyle.BLL.Services
         public void Update(Guid productId, ProductDto productDto)
         {
             var season = _seasonRepository.FindAllWhere(s => s.Name == productDto.Season.ToString());
-            var productModelForMapping = new ProductModelForMapping
-            {
-                Season = season,
-                Category = productDto.Category,
-                Gender = productDto.Gender,
-                Description = productDto.Description,
-                Image = productDto.Image,
-                Price = productDto.Price,
-                Title = productDto.Title
-            };
-            var product = _mapper.Map<Product>(productModelForMapping);
+            productDto.Season = _mapper.Map<List<SeasonDto>>(season);
+            var product = _mapper.Map<Product>(productDto);
 
             _repository.Update(product);
         }

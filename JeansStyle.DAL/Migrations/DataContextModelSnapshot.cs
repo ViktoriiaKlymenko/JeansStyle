@@ -16,7 +16,7 @@ namespace JeansStyle.DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.17")
+                .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Category", b =>
@@ -33,27 +33,18 @@ namespace JeansStyle.DAL.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("JeansStyle.DAL.Domain.Models.LocationCredentials", b =>
+            modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Gender", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Adress")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NumberOfWarehouse")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("LocationCredentials");
+                    b.ToTable("Genders");
                 });
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Order", b =>
@@ -61,6 +52,9 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid?>("UserCredentialsId")
                         .HasColumnType("uniqueidentifier");
@@ -84,8 +78,8 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
+                    b.Property<Guid>("GenderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -100,6 +94,8 @@ namespace JeansStyle.DAL.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("GenderId");
+
                     b.ToTable("Products");
                 });
 
@@ -112,13 +108,18 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ProductId")
+                    b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SizeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -129,10 +130,9 @@ namespace JeansStyle.DAL.Migrations
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Season", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -144,10 +144,9 @@ namespace JeansStyle.DAL.Migrations
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Size", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -163,14 +162,17 @@ namespace JeansStyle.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("LocationCredentialsId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
@@ -180,24 +182,7 @@ namespace JeansStyle.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationCredentialsId");
-
                     b.ToTable("UserCredentials");
-                });
-
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.Property<Guid>("OrdersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("OrdersId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("ProductSeason", b =>
@@ -205,8 +190,8 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<Guid>("ProductsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("SeasonsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("SeasonsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProductsId", "SeasonsId");
 
@@ -232,46 +217,42 @@ namespace JeansStyle.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("JeansStyle.DAL.Domain.Models.Gender", "Gender")
+                        .WithMany("Products")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Categories");
+
+                    b.Navigation("Gender");
                 });
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.ProductSize", b =>
                 {
+                    b.HasOne("JeansStyle.DAL.Domain.Models.Order", "Order")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("JeansStyle.DAL.Domain.Models.Product", "Product")
                         .WithMany("ProductSizes")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("JeansStyle.DAL.Domain.Models.Size", "Size")
                         .WithMany()
-                        .HasForeignKey("SizeId");
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
 
                     b.Navigation("Size");
-                });
-
-            modelBuilder.Entity("JeansStyle.DAL.Domain.Models.UserCredentials", b =>
-                {
-                    b.HasOne("JeansStyle.DAL.Domain.Models.LocationCredentials", "LocationCredentials")
-                        .WithMany()
-                        .HasForeignKey("LocationCredentialsId");
-
-                    b.Navigation("LocationCredentials");
-                });
-
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.HasOne("JeansStyle.DAL.Domain.Models.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JeansStyle.DAL.Domain.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProductSeason", b =>
@@ -292,6 +273,16 @@ namespace JeansStyle.DAL.Migrations
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Gender", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Order", b =>
+                {
+                    b.Navigation("ProductSizes");
                 });
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.Product", b =>

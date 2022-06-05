@@ -1,5 +1,7 @@
 ﻿@using JeansStyle.BLL.DTOs
-@model JeansStyle.API.Models.SearchRequest
+@using JeansStyle.WEB.Models
+
+@model SearchRequest
 @{
     var categories = ViewBag.Categories as List<CategoryDto>;
 }
@@ -47,7 +49,7 @@
                 </div>
             </div>
         </div>
-
+        @Html.RenderPartialAsync("_PartialView",categories)
 
     </header>
     <div class="container">

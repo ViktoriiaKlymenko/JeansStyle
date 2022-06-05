@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JeansStyle.API.Models.Enums
+namespace JeansStyle.WEB.Models.Enums
 {
-    public enum Season
+    public class Season
     {
-        Winter = 0,
-        Spring = 1,
-        Summer = 2,
-        Autumn = 3
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }
