@@ -4,6 +4,7 @@ using JeansStyle.BLL.Interfaces;
 using JeansStyle.WEB.Models;
 using JeansStyle.WEB.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 
@@ -34,7 +35,7 @@ namespace JeansStyle.WEB.Controllers
         public ActionResult GetProductSizes(Guid id)
         {
             var productDto = _searchService.GetById(id);
-            var productSizes = _searchService.GetProductSizesById(id);
+            //var productSizes = _searchService.GetProductSizesById(id);
             ViewBag.Product = productDto;
             ViewBag.Sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
             return View();
@@ -46,16 +47,34 @@ namespace JeansStyle.WEB.Controllers
         {
             var productDto = _searchService.GetById(id);
             ViewBag.Product = productDto;
-            ViewBag.Sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
+            var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
+            ViewBag.Sizes = sizes;
+            var sizesSelect = new List<SelectListItem>();
+            foreach (var size in sizes)
+            {
+                SelectListItem c = new SelectListItem();
+                c.Text = size.Name;
+                c.Value = size.Id.ToString();
+                sizesSelect.Add(c);
+            }
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddProductSize(Guid productId, ProductSize productSize)
+        public ActionResult AddProductSize(Guid productId, Size size, int amount)
         {
             if (ModelState.IsValid)
             {
+                var product = _mapper.Map<Product>(_searchService.GetProductById(productId));
+
+                var productSize = new ProductSize()
+                {
+                    Product = product,
+                    Size = size,
+                    Amount=amount
+                };
                 var productSizeDto = _mapper.Map<ProductSizeDto>(productSize);
+
                 _productSizeService.AddProductSizes(productSizeDto);
             }
             return View("NotFound");
