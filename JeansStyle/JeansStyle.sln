@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JeansStyle.BLL", "..\JeansS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JeansStyle.DAL", "..\JeansStyle.DAL\JeansStyle.DAL.csproj", "{F707F6BA-9460-4C61-B914-2BEA7AA01764}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JeansStyle.WEB", "..\JeansStyle.API\JeansStyle.WEB.csproj", "{C4FB9FC1-634B-4DAE-9C08-7686CA0AD528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JeansStyle.WEB", "..\JeansStyle.WEB\JeansStyle.WEB.csproj", "{C4FB9FC1-634B-4DAE-9C08-7686CA0AD528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
