@@ -1,0 +1,23 @@
+﻿@using JeansStyle.WEB.Models.Enums
+
+@model ProductSize
+
+@{
+    var sizes = ViewBag.Sizes as List<Size>;
+    var product = ViewBag.Product as List<Product>;
+}
+
+<label for="season">Choose the size:</label>
+<br />
+<select multiple name="size">
+    @foreach(var size in sizes)
+    {
+        <option value=@size>@size.Name</option>
+    }
+
+</select>
+<br />
+<br />
+
+<br />
+<br />
