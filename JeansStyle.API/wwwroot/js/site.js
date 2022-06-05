@@ -25,3 +25,7 @@ function addToCookies(id, productSizeId = null) {
 
     localStorage.setItem('cartProducts', JSON.stringify(cart))
 }
+
+function getFromCookies {
+    return localStorage.cart;
+}

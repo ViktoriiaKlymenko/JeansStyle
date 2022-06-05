@@ -1,7 +1,5 @@
-﻿using JeansStyle.BLL.DTOs.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace JeansStyle.BLL.DTOs
 {
@@ -14,9 +12,9 @@ namespace JeansStyle.BLL.DTOs
 
         public CategoryDto Category { get; set; }
 
-        public List<Season> Season { get; set; }
+        public List<SeasonDto> Season { get; set; }
 
-        public Gender Gender { get; set; }
+        public Guid GenderId { get; set; }
         public string Image { get; set; }
 
         public decimal Price { get; set; }

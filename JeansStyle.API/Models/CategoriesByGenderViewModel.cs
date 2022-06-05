@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JeansStyle.API.Models
+namespace JeansStyle.WEB.Models
 {
     public class CategoriesByGenderViewModel
     {

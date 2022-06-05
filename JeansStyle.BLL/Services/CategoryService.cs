@@ -32,8 +32,8 @@ namespace JeansStyle.BLL.Services
             var categoriesDto = _searchService.GetAllCategories();
             var categories = _mapper.Map<List<Category>>(categoriesDto);
 
-            categoriesByGender.Men = categories.Where(c => c.Products.Any(p => (int)p.Gender == 0)).Distinct().ToList();
-            categoriesByGender.Women = categories.Where(c => c.Products.Any(p => (int)p.Gender == 1)).Distinct().ToList();
+            //categoriesByGender.Men = categories.Where(c => c.Products.Any(p => (int)p.Gender == 0)).Distinct().ToList();
+            //categoriesByGender.Women = categories.Where(c => c.Products.Any(p => (int)p.Gender == 1)).Distinct().ToList();
 
             return categoriesByGender;
 

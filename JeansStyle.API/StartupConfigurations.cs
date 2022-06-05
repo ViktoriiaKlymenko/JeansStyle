@@ -3,17 +3,16 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using JeansStyle.BLL;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Services;
 using JeansStyle.DAL;
 using JeansStyle.DAL.Data.Repositories;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
-using JeansStyle.API.Mapping;
 using JeansStyle.BLL.Mapping;
+using JeansStyle.WEB.Mapping;
 
-namespace JeansStyle.API
+namespace JeansStyle.WEB
 {
     public static class StartupConfigurations
     {
@@ -31,7 +30,7 @@ namespace JeansStyle.API
             services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<IProductSizeService, ProductSizeService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ICategoryService, CategoryService>();
+
 
             return services;
         }
@@ -42,8 +41,9 @@ namespace JeansStyle.API
             services.AddScoped<IBaseRepository<ProductSize>, BaseRepository<ProductSize>>();
             services.AddScoped<IBaseRepository<Category>, BaseRepository<Category>>();
             services.AddScoped<IBaseRepository<Season>, BaseRepository<Season>>();
+            services.AddScoped<IBaseRepository<Gender>, BaseRepository<Gender>>();
             services.AddScoped<IBaseRepository<Size>, BaseRepository<Size>>();
-            
+
             return services;
         }
 

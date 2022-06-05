@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using JeansStyle.API.Mapping;
-using JeansStyle.API.Models;
 using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Models;
+using JeansStyle.WEB.Models;
+using JeansStyle.WEB.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -13,7 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JeansStyle.API.Controllers
+namespace JeansStyle.WEB.Controllers
 {
     public class AdminController : Controller
     {
@@ -40,30 +40,13 @@ namespace JeansStyle.API.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            var product = _searchService.GetById(id);
-            _adminService.DeleteProduct(product);
+            var productDto = _searchService.GetByIdWithReturningDto(id);
+
+            _adminService.DeleteProduct(productDto);
+
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public ActionResult AddProductSize(Guid id)
-        {
-            var productDto = _searchService.GetById(id);
-            ViewBag.Product = _mapper.Map<Product>(productDto);
-            ViewBag.Sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddProductSize(ProductSize productSize)
-        {
-            if (ModelState.IsValid)
-            {
-                var productSizeDto = _mapper.Map<ProductSizeDto>(productSize);
-                _productSizeService.AddProductSizes(productSizeDto);
-            }
-            return View("NotFound");
-        }
 
         public ActionResult GetProducts()
         {
@@ -76,16 +59,109 @@ namespace JeansStyle.API.Controllers
         public ActionResult Create()
         {
             var categories = _searchService.GetAllCategories();
-           
-            ViewBag.Categories = categories;
+            var seasons = _searchService.GetAllSeasons();
+            var genders = _searchService.GetAllGenders();
+
+            var categoriesSelect = new List<SelectListItem>();
+            foreach (var category in categories)
+            {
+                SelectListItem c = new SelectListItem();
+                c.Text = category.Name;
+                c.Value = category.Id.ToString();
+                
+                categoriesSelect.Add(c);
+            }
+
+            var seasonsSelect = new List<SelectListItem>();
+            foreach (var season in seasons)
+            {
+                SelectListItem c = new SelectListItem();
+                c.Text = season.Name;
+                c.Value = season.Id.ToString();
+                seasonsSelect.Add(c);
+            }
+
+            var gendersSelect = new List<SelectListItem>();
+            foreach (var gender in genders)
+            {
+                SelectListItem c = new SelectListItem();
+                c.Text = gender.Name;
+                c.Value = gender.Id.ToString();
+                gendersSelect.Add(c);
+            }
+
+
+
+
+            ViewBag.Categories = categoriesSelect;
+            ViewBag.Genders = gendersSelect;
+            ViewBag.Seasons = seasonsSelect;
+
 
             return View();
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Product product)
+        public async Task<ActionResult> Create(ProductViewModel productViewModel)
         {
+            var product = new Product();
+
+
+            if (ModelState.IsValid)
+            {
+                string filePath = "/images/clothes/" + productViewModel.Image.FileName;
+                using (var fileStream = new FileStream("wwwroot" + filePath, FileMode.OpenOrCreate))
+                {
+                    await productViewModel.Image.CopyToAsync(fileStream);
+                }
+
+                productViewModel.Title = string.Join(" ", productViewModel.Title.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+                var category = _mapper.Map<Category>(_searchService.GetCategoryById(Guid.Parse(productViewModel.CategoryId)));
+                var gender = _mapper.Map<Gender>(_searchService.GetGenderById(Guid.Parse(productViewModel.GenderId)));
+                var seasons = _mapper.Map<List<Season>>(_searchService.GetSeasonsById(productViewModel.SeasonId));
+
+                product = new Product()
+                {
+                    Category = category,
+                    Description = productViewModel.Description,
+                    Gender = gender,
+                    Image = filePath,
+                    Price = productViewModel.Price,
+                    Season = seasons,
+                    Title = productViewModel.Title
+                };
+
+                var productDto = _mapper.Map<ProductDto>(product);
+
+                _adminService.AddProduct(productDto);
+                return RedirectToAction("GetProducts");
+            }
+
+            return View(product);
+        }
+
+
+        [HttpGet]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Update(Guid id)
+        {
+            var categories = _searchService.GetAllCategories();
+            var productDto = _searchService.GetById(id);
+            var product = _mapper.Map<Product>(productDto);
+
+            ViewBag.Categories = categories;
+
+
+            return View(product);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> Update()
+        {
+            var product = new ProductViewModel();
 
             if (ModelState.IsValid)
             {
@@ -95,30 +171,15 @@ namespace JeansStyle.API.Controllers
                     await product.Image.CopyToAsync(fileStream);
                 }
 
-                var category = new Category
-                {
-                    Id = _searchService.GetCategoryIdByName(product.Category),
-                    Name = product.Category
-                };
+                var productDto = _mapper.Map<ProductDto>(product);
 
-                var productModelForMapping = new ProductModelForMapping
-                {
-                    Title = String.Join(" ", product.Title.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)),
-                    Description = product.Description,
-                    Category = category,
-                    Season = product.Season,
-                    Gender = product.Gender,
-                    Image = filePath,
-                    Price = product.Price,
-                };
-
-                var productDto = _mapper.Map<ProductDto>(productModelForMapping);
-
-                _adminService.AddProduct(productDto);
+                _adminService.Update(product.Id, productDto);
                 return RedirectToAction("GetProducts");
             }
 
             return View(product);
         }
     }
+
 }
+

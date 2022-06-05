@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Interfaces;
+using JeansStyle.BLL.Mapping;
 using JeansStyle.BLL.Models;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
@@ -16,20 +17,29 @@ namespace JeansStyle.BLL.Services
     {
         private readonly IBaseRepository<Product> _repository;
         private readonly IBaseRepository<Category> _categoryRepository;
+        private readonly IBaseRepository<Season> _seasonRepository;
+        private readonly IBaseRepository<Gender> _genderRepository;
+        private readonly IBaseRepository<ProductSize> _productSizeRepository;
         private readonly IMapper _mapper;
 
-        public SearchService(IBaseRepository<Product> repository, IBaseRepository<Category> categoryRepository, IMapper mapper)
+        public SearchService(IBaseRepository<Product> repository, IBaseRepository<Category> categoryRepository,
+            IBaseRepository<Season> seasonRepository,
+            IBaseRepository<Gender> genderRepository,
+            IMapper mapper)
         {
             _repository = repository;
             _categoryRepository = categoryRepository;
+            _seasonRepository = seasonRepository;   
+            _genderRepository = genderRepository;   
             _mapper = mapper;
         }
 
         public SearchResponse GetProductsByTitleAndDescription(string keyword)
         {
             var searchResponse = new SearchResponse();
-            searchResponse.Products = _repository.FindAllWhere(p => p.Title.Contains(keyword));
-            searchResponse.Products.AddRange(_repository.FindAllWhere(p => p.Description.Contains(keyword)));
+            searchResponse.Products = _mapper.Map<List<ProductDto>>(_repository.FindAllWhere(p => p.Title.ToLower().Contains(keyword.ToLower())));
+            searchResponse.Products.AddRange(_mapper.Map<List<ProductDto>>(_repository.FindAllWhere(p => p.Description.ToLower().Contains(keyword.ToLower()))));
+            searchResponse.Products.Distinct();
             return searchResponse;
         }
 
@@ -38,7 +48,7 @@ namespace JeansStyle.BLL.Services
             var products = _repository.GetAll();
             var searchResponse = new SearchResponse
             {
-                Products = _repository.FindAllWhere(p => p.CategoryId == id)
+                Products = _mapper.Map<List<ProductDto>>(_repository.FindAllWhere(p => p.CategoryId == id))
             };
 
 
@@ -73,7 +83,7 @@ namespace JeansStyle.BLL.Services
         {
             var searchResponse = new SearchResponse
             {
-                Products = _repository.GetAll()
+                Products = _mapper.Map<List<ProductDto>>(_repository.GetAll())
             };
 
             return searchResponse;
@@ -90,6 +100,48 @@ namespace JeansStyle.BLL.Services
             var productDto = _mapper.Map<ProductDto>(product);
 
             return productDto;
+        } 
+        public ProductDto GetByIdWithReturningDto(Guid id)
+        {
+            var product = _repository.FindWhere(p => p.Id == id);
+            var productDto = _mapper.Map<ProductDto>(product);
+
+            return productDto;
+        }
+
+        public List<ProductSizeDto> GetProductSizesById(Guid id)
+        {
+            return _mapper.Map<List<ProductSizeDto>>(_productSizeRepository.FindAllWhere(ps=>ps.ProductId == id));
+        }
+
+        public List<SeasonDto> GetAllSeasons()
+        {
+            return _mapper.Map<List<SeasonDto>>(_seasonRepository.GetAll());
+        }
+
+        public List<GenderDto> GetAllGenders()
+        {
+            return _mapper.Map<List<GenderDto>>(_genderRepository.GetAll());
+        }
+
+        public CategoryDto GetCategoryById(Guid id)
+        {
+            return _mapper.Map<CategoryDto>(_categoryRepository.FindWhere(c=>c.Id == id));
+        }
+
+        public GenderDto GetGenderById(Guid id)
+        {
+            return _mapper.Map<GenderDto>(_genderRepository.FindWhere(g => g.Id == id));
+        }
+
+        public List<SeasonDto> GetSeasonsById(List<string> ids)
+        {
+            var seasons = new List<SeasonDto>();
+            foreach(var id in ids )
+            {
+                seasons.Add(_mapper.Map<SeasonDto>(_seasonRepository.FindWhere(s => s.Id == Guid.Parse(id))));
+            }
+            return seasons;
         }
     }
 }

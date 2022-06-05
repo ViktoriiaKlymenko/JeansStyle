@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace JeansStyle.API.Views
+namespace JeansStyle.WEB.Views
 {
     public class CategoryViewModel
     {

@@ -1,13 +1,12 @@
-﻿using JeansStyle.DAL.Domain.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace JeansStyle.DAL.Domain.Enums
+namespace JeansStyle.DAL.Domain.Models
 {
-    public enum Gender
+    public class Gender
     {
-        Male = 0,
-        Female = 1,
-        Unisex = 2
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

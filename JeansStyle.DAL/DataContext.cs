@@ -1,5 +1,4 @@
-﻿using JeansStyle.DAL.Domain.Enums;
-using JeansStyle.DAL.Domain.Models;
+﻿using JeansStyle.DAL.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,8 +15,8 @@ namespace JeansStyle.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Season> Seasons { get; set; }
+        public DbSet<Gender> Genders { get; set; }
         public DbSet<UserCredentials> UserCredentials { get; set; }
-        public DbSet<LocationCredentials> LocationCredentials { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

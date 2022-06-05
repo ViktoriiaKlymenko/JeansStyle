@@ -15,7 +15,7 @@
    	   	<h3 class="Heading">Shopping Cart</h3>
    	   	<h5 class="Action">Remove all</h5>
    	   </div>
-
+          <button onclick="getFromCookies()"
    	   <div class="Cart-Items">
    	   	  <div class="image-box">
    	   	  	<img src="images/apple.png" style={{ height="120px" }} />
@@ -42,7 +42,7 @@
    	   	  	<img src="images/grapes.png" style={{ height="120px" }} />
    	   	  </div>
    	   	  <div class="about">
-   	   	  	<h1 class="title">Grapes Juice</h1>
+   	   	  	<h1 class="title"></h1>
    	   	  	<h3 class="subtitle">250ml</h3>
    	   	  	<img src="images/veg.png" style={{ height="30px" }}/>
    	   	  </div>
@@ -69,4 +69,9 @@
    	 <button class="button">Checkout</button></div>
    </div>
 </body>
+<script>
+    function getFromCookies {
+    return JSON.parse(localStorage.getItem('cartProducts'));
+}
+</script>
 </html>

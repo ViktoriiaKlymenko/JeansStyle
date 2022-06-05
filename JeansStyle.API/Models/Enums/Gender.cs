@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JeansStyle.API.Models.Enums
+namespace JeansStyle.WEB.Models.Enums
 {
-    public enum Gender
+    public class Gender
     {
-        Male = 0,
-        Female = 1,
-        Unisex = 2
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

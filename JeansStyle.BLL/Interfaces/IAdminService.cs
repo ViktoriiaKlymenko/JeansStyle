@@ -1,6 +1,7 @@
 ﻿using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace JeansStyle.BLL.Interfaces
@@ -13,5 +14,6 @@ namespace JeansStyle.BLL.Interfaces
 
         void DeleteProduct(ProductDto product);
         SearchResponse GetAllProducts();
+        void Update(Guid productId, ProductDto productDto);
     }
 }
