@@ -1,0 +1,41 @@
+﻿@using JeansStyle.BLL.DTOs
+@using JeansStyle.WEB.Models
+
+@model ProductSizeDto
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Product size creating";
+    var sizes = ViewBag.Sizes as List<CategoryDto>;
+    var product = ViewBag.Product as ProductDto;
+}
+
+@section Breadcrumbs
+{
+<li class="breadcrumb-item">Products</li>
+}
+
+
+
+<div class="main-content">
+    @using (Html.BeginForm("AddProductSize", "ProductSize", FormMethod.Post, new {enctype="multipart/form-data"}))
+    {
+        <input type="hidden" name="id" value="@product.Id" />
+
+        <br />
+        <div class="form-group">
+             <label for="Size">Size:</label>
+            @Html.DropDownListFor(model=>model.Size.Id, (IEnumerable<SelectListItem>)ViewBag.Sizes)
+        </div>
+        <br />
+
+        <br />
+          <label for="Amount">Amount:</label>
+
+        <br />
+        <input type="text" name="Amount" />
+
+        <br />
+
+        <input type="submit" value="Send" />
+    }
+</div>

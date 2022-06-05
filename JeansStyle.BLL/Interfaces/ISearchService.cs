@@ -19,13 +19,13 @@ namespace JeansStyle.BLL.Interfaces
         ProductDto GetByIdWithReturningDto(Guid id);
         Guid GetCategoryIdByName(string name);
         SearchResponse GetAllProductsByCategoryId(Guid id);
-        List<ProductSizeDto> GetProductSizesById(Guid id);
+        List<ProductSizeDto> GetProductSizesById(Guid productId, Guid sizeId);
         List<SeasonDto> GetAllSeasons();
         List<GenderDto> GetAllGenders();
         CategoryDto GetCategoryById(Guid id);
+        SizeDto GetSizeById(Guid sizeId);
         GenderDto GetGenderById(Guid id);
         List<SeasonDto> GetSeasonsById(List<string> ids);
-        
-
+        ProductDto GetProductById(Guid productId);
     }
 }
