@@ -11,12 +11,12 @@ namespace JeansStyle.WEB.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
-    { 
-        private readonly ISearchService _searchService; 
+    {
+        private readonly ISearchService _searchService;
         private readonly IMapper _mapper;
         public CartController(ISearchService searchService, IMapper mapper)
         {
-           
+
             _searchService = searchService;
             _mapper = mapper;
 
@@ -32,7 +32,8 @@ namespace JeansStyle.WEB.Controllers
 
                 Product = product,
                 ProductSize = productSize,
-                Amount = cart.Amount
+                Amount = cart.Amount,
+                TotalPrice = cart.Amount * product.Price
             };
 
             var modelSerialized = JsonSerializer.Serialize(model);
