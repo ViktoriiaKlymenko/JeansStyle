@@ -57,7 +57,7 @@ namespace JeansStyle.WEB.Controllers
             var productDto = _searchService.GetById(id);
             ViewBag.Product = productDto;
             var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
-            ViewBag.Sizes = sizes;
+            
             var sizesSelect = new List<SelectListItem>();
             foreach (var size in sizes)
             {
@@ -66,6 +66,7 @@ namespace JeansStyle.WEB.Controllers
                 c.Value = size.Id.ToString();
                 sizesSelect.Add(c);
             }
+            ViewBag.Sizes = sizesSelect;
             return View();
         }
 

@@ -1,23 +1,45 @@
-﻿@using JeansStyle.WEB.Models.Enums
+﻿@using JeansStyle.BLL.DTOs
+@using JeansStyle.WEB.Models
 
-@model ProductSize
-
+@model ProductSizeDto
 @{
-    var sizes = ViewBag.Sizes as List<Size>;
-    var product = ViewBag.Product as List<Product>;
+    Layout = "_Admin";
+    ViewData["Title"] = "Product size creating";
+    var sizes = ViewBag.Sizes as List<CategoryDto>;
+    var product = ViewBag.Product as ProductDto;
 }
 
-<label for="season">Choose the size:</label>
-<br />
-<select multiple name="size">
-    @foreach(var size in sizes)
+@section Breadcrumbs
+{
+<li class="breadcrumb-item">Products</li>
+}
+
+
+
+<div class="main-content">
+    @using (Html.BeginForm("AddProductSize", "ProductSize", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <option value=@size>@size.Name</option>
+        <input type="hidden" name="id" value="@product.Id" />
+
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="Size">Size:</label>
+                @Html.DropDownListFor(model=>model.Size.Id, (IEnumerable<SelectListItem>)ViewBag.Sizes, new {
+            @class = "form-control"
+            })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="Amount">Amount:</label>
+                <input class="form-control" type="number" min="0" name="Amount" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Save product size</button>
+        </div>
     }
-
-</select>
-<br />
-<br />
-
-<br />
-<br />
+</div>

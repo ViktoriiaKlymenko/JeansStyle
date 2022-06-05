@@ -50,6 +50,8 @@ namespace JeansStyle.WEB.Controllers
 
         public ActionResult GetProducts()
         {
+            var products = _searchService.GetAll().Products;
+
             ViewBag.Products = _searchService.GetAll().Products;
             return View();
         }
