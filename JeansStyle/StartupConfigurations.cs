@@ -12,7 +12,7 @@ using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
 using System.Linq;
 
-namespace JeansStyle.API
+namespace JeansStyle.WEB
 {
     public static class StartupConfigurations
     {

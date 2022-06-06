@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using JeansStyle.API.Models;
+using JeansStyle.WEB.Models;
 using JeansStyle.BLL.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JeansStyle.API
+namespace JeansStyle.WEB
 {
     public class MappingProfile : Profile
     {

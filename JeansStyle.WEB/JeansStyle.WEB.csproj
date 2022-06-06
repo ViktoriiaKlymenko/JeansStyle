@@ -8,6 +8,10 @@
   <ItemGroup>
     <Content Remove="Views\Home\GetBasket.cshtml" />
     <Content Remove="Views\Home\GetProductCard.cshtml" />
+    <Content Include="src\components\Cart\CartComponent.vue">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,7 +40,6 @@
 
   <ItemGroup>
     <None Include="Views\Home\GetProductCard.cshtml" />
-    <None Include="wwwroot\js\components\CartComponent.vue" />
   </ItemGroup>
 
 </Project>

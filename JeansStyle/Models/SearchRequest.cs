@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JeansStyle.API.Models
+namespace JeansStyle.WEB.Models
 {
     public class SearchRequest
     {

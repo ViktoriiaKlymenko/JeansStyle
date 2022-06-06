@@ -2,7 +2,7 @@
 @using JeansStyle.WEB.Models.Enums
 @{
     ViewData["Title"] = "Catalog";
-   var sizes = ViewBag.Sizes as List<Size>;
+    var sizes = ViewBag.Sizes as List<Size>;
 }
 
 <div class="main-content">
@@ -16,35 +16,33 @@
                     <div class="dress-card">
                         <div class="dress-card-head">
                             <img class="dress-card-img-top" src="@product.Image" alt="">
-==
                         </div>
                         <div class="dress-card-body">
                             <h4 class="dress-card-title">@product.Title</h4>
                             <p class="dress-card-para">Made with love</p>
-                            <p class="dress-card-para"><span class="dress-card-price">@Math.Round(@product.Price, 2) &#36;</span><span class="dress-card-crossed"></span><span class="dress-card-off"></span></p>
-
+                            <p class="dress-card-para">
+                                <span class="dress-card-price">@Math.Round(@product.Price, 2) &#36;</span><span class="dress-card-crossed"></span><span class="dress-card-off"></span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-9">
                     <div class="description">
-                        <p>Gender: @product.Gender.Name</p>
-                        <p>Category: @product.Category.Name</p>
+                        <p><b>Gender:</b> @product.Gender.Name</p>
+                        <p><b>Category:</b> @product.Category.Name</p>
                         <div class="form-group">
-             <label for="Season">Size:</label>
-            @Html.DropDownListFor(model => model.Id,  (IEnumerable<SelectListItem>)ViewBag.Sizes)
-        </div>
-   
+                            <label for="Season"><b>Size:</b></label>
+                            @Html.DropDownListFor(model => model.Id, (IEnumerable<SelectListItem>)ViewBag.Sizes, new
+                            {
+                                @class = "form-control"
+                            })
+                        </div>
+
                         <p>Description: @product.Description</p>
                     </div>
                     <div class="row">
-                        <button class="btn col-md-6 card-button" onclick="addToCookies('@product.Id')">
-                            <div class="card-button-inner bag-button">Add to Bag</div>
-                        </button>
-                        <button class="btn col-md-6 card-button">
-                            <div class="card-button-inner wish-button">Whishlist</div>
-                        </button>
+                        <add-to-cart-button product-id="@product.Id"></add-to-cart-button>
                     </div>
                 </div>
             </div>

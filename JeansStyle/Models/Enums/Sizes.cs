@@ -1,4 +1,4 @@
-﻿namespace JeansStyle.API.Models
+﻿namespace JeansStyle.WEB.Models
 {
     public enum Sizes
     {

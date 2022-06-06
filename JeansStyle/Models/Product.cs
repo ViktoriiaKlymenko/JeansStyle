@@ -1,8 +1,8 @@
-﻿using JeansStyle.API.Models.Enums;
+﻿using JeansStyle.WEB.Models.Enums;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace JeansStyle.API.Models
+namespace JeansStyle.WEB.Models
 {
     public class Product
     {

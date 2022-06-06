@@ -41,6 +41,7 @@ namespace JeansStyle.WEB.Controllers
                 {
                     productsToView.Add(new Product
                     {
+                        Id = product.Id,
                         Category = _mapper.Map<Category>(_searchService.GetCategoryById(product.Category.Id)),
                         Description = product.Description,
                         Title = product.Title,

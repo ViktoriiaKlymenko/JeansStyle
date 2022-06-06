@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using JeansStyle.API.Models;
+using JeansStyle.WEB.Models;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace JeansStyle.API.Controllers
+namespace JeansStyle.WEB.Controllers
 {
     [Controller]
     [Route("[controller]/[action]")]
