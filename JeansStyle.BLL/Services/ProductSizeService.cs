@@ -3,6 +3,8 @@ using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
 using JeansStyle.DAL.Domain.Models;
+using System;
+using System.Collections.Generic;
 
 namespace JeansStyle.BLL.Services
 {
@@ -21,6 +23,19 @@ namespace JeansStyle.BLL.Services
         {
             var productSize = _mapper.Map<ProductSize>(productSizeDto);
             _productSizeRepository.Add(productSize);
+        }
+
+
+        public List<SizeDto> GetSizeByProductId(Guid productId)
+        {
+            var productSizes= _mapper.Map<List<ProductSizeDto>>(_productSizeRepository.FindAllWhere(s => s.ProductId== productId));
+            var sizes = new List<SizeDto>();    
+            foreach(var productSize in productSizes)
+            {
+                sizes.Add(productSize.Size);
+            }
+
+            return sizes;
         }
     }
 }

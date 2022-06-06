@@ -16,12 +16,14 @@ namespace JeansStyle.WEB.Controllers
         private readonly ISearchService _searchService;
         private readonly IMapper _mapper;
         private readonly ISizeService _sizeService;
+        private readonly IProductSizeService _productSizeService;
 
-        public HomeController(ILogger<HomeController> logger, ISearchService searchService, IMapper mapper, ISizeService sizeService)
+        public HomeController(ILogger<HomeController> logger, ISearchService searchService, IMapper mapper, ISizeService sizeService, IProductSizeService productSizeService)
         {
             _searchService = searchService;
             _mapper = mapper;
             _sizeService = sizeService;
+            _productSizeService = productSizeService;
         }
 
         public ActionResult GetProducts([FromQuery] SearchRequest searchRequest)
@@ -48,6 +50,7 @@ namespace JeansStyle.WEB.Controllers
                         Price = product.Price,
                         Season = _mapper.Map<List<Season>>(product.Season),
                         Gender = _mapper.Map<Gender>(_searchService.GetGenderById(product.GenderId))
+
                     });
                 }
                 var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
