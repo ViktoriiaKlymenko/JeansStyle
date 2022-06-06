@@ -56,6 +56,14 @@ namespace JeansStyle.WEB.Controllers
             return View();
         }
 
+        public ActionResult GetProductDetails(Guid productId)
+        {
+            var products = _searchService.GetById(productId);
+
+            ViewBag.Products = products;
+            return View();
+        }
+
         [HttpGet]
         //[ValidateAntiForgeryToken]
         public ActionResult Create()

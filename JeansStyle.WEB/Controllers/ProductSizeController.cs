@@ -76,7 +76,7 @@ namespace JeansStyle.WEB.Controllers
             if (ModelState.IsValid)
             {
                 var product = _mapper.Map<Product>(_searchService.GetProductById(productId));
-
+                size = _mapper.Map<Size>(_sizeService.GetById(size.Id));
                 var productSize = new ProductSize()
                 {
                     Product = product,

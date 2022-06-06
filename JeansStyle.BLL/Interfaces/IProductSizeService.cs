@@ -7,6 +7,6 @@ namespace JeansStyle.BLL.Interfaces
     public interface IProductSizeService
     {
         void AddProductSizes(ProductSizeDto productSizeDto);
-        List<SizeDto> GetSizeByProductId(Guid productId)
+        List<SizeDto> GetSizeByProductId(Guid productId);
     }
 }
