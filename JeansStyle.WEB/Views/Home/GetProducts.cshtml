@@ -2,7 +2,7 @@
 @using JeansStyle.WEB.Models.Enums
 @{
     ViewData["Title"] = "Catalog";
-   var sizes = ViewBag.Sizes as List<Size>;
+    var sizes = ViewBag.Sizes as List<Size>;
 }
 
 <div class="main-content">
@@ -16,7 +16,7 @@
                     <div class="dress-card">
                         <div class="dress-card-head">
                             <img class="dress-card-img-top" src="@product.Image" alt="">
-==
+                            ==
                         </div>
                         <div class="dress-card-body">
                             <h4 class="dress-card-title">@product.Title</h4>
@@ -32,10 +32,10 @@
                         <p>Gender: @product.Gender.Name</p>
                         <p>Category: @product.Category.Name</p>
                         <div class="form-group">
-             <label for="Season">Size:</label>
-            @Html.DropDownListFor(model => model.Id,  (IEnumerable<SelectListItem>)ViewBag.Sizes)
-        </div>
-   
+                            <label for="Season">Size:</label>
+                            @Html.DropDownListFor(model => model.Id,  (IEnumerable<SelectListItem>)ViewBag.Sizes)
+                        </div>
+
                         <p>Description: @product.Description</p>
                     </div>
                     <div class="row">
