@@ -15,7 +15,7 @@ namespace JeansStyle.WEB.Models
 
         public Category Category { get; set; }
 
-        public List<Season> Season { get; set; }
+        public List<Season> Seasons { get; set; }
 
         public Gender Gender{ get; set; }
         public string Image { get; set; }

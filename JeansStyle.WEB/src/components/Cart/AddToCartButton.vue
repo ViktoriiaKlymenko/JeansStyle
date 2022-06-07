@@ -50,5 +50,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.bag-button {
+  background: #E06C9F;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
 
+.card-button:hover {
+  .bag-button {
+    background: #e299b9;
+  }
+}
 </style>

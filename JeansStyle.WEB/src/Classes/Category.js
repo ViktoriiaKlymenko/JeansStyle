@@ -1,9 +1,4 @@
-﻿export class Gender {
-    // static defaults = {
-    //     id: '',
-    //     name: ''
-    // }
-
+﻿export class Category {
     constructor(
         id,
         name

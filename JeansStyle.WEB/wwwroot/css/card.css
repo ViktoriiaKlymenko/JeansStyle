@@ -32,11 +32,6 @@
     font-size: 1.0rem;
 }
 
-.dress-card-para-small {
-    font-size: 14px;
-    transition: 0.3s;
-}
-
 .dress-card {
     border-radius: 14px;
 }
@@ -64,43 +59,43 @@
     transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-    .surprise-bubble a {
-        font-size: 0.65em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: white;
-        font-family: arial;
-        text-decoration: none;
-        position: absolute;
-        top: 9px;
-        left: 20px;
-        opacity: 0;
-        -webkit-transition-delay: 2s;
-        /* Safari */
-        transition-delay: 2s;
-        -webkit-transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-        transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-    }
+.surprise-bubble a {
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    font-family: arial;
+    text-decoration: none;
+    position: absolute;
+    top: 9px;
+    left: 20px;
+    opacity: 0;
+    -webkit-transition-delay: 2s;
+    /* Safari */
+    transition-delay: 2s;
+    -webkit-transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
-    .surprise-bubble:hover {
-        border-radius: 999rem;
-        padding: 1rem;
-        width: 26%;
-        height: 30px;
-        background: #DB2763;
-        color: white;
-        -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
-        transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
-    }
+.surprise-bubble:hover {
+    border-radius: 999rem;
+    padding: 1rem;
+    width: 26%;
+    height: 30px;
+    background: #DB2763;
+    color: white;
+    -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
-        .surprise-bubble:hover a {
-            opacity: 1;
-            -webkit-transition-delay: 2s;
-            /* Safari */
-            transition-delay: 2s;
-            -webkit-transition: opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-            transition: opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
+.surprise-bubble:hover a {
+    opacity: 1;
+    -webkit-transition-delay: 2s;
+    /* Safari */
+    transition-delay: 2s;
+    -webkit-transition: opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
 .card-button {
     text-align: center;
@@ -109,25 +104,11 @@
     padding: 9px;
 }
 
-    .card-button a {
-        text-decoration: none;
-    }
+.card-button a {
+    text-decoration: none;
+}
 
 .card-button-inner {
     padding: 10px;
     border-radius: 3px;
-}
-
-.bag-button {
-    background: #E06C9F;
-    color: white;
-}
-
-    .bag-button :hover {
-        background: #e299b9;
-    }
-
-.wish-button {
-    border: 1px solid #E06C9F;
-    color: #E06C9F;
 }

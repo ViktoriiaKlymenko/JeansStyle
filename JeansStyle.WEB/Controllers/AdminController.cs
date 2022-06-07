@@ -131,7 +131,7 @@ namespace JeansStyle.WEB.Controllers
                     Gender = gender,
                     Image = filePath,
                     Price = productViewModel.Price,
-                    Season = seasons,
+                    Seasons = seasons,
                     Title = productViewModel.Title
                 };
 

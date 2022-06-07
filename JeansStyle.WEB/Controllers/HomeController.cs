@@ -47,8 +47,8 @@ namespace JeansStyle.WEB.Controllers
                         Title = product.Title,
                         Image = product.Image,
                         Price = product.Price,
-                        Season = _mapper.Map<List<Season>>(product.Season),
-                        // Gender = _mapper.Map<Gender>(_searchService.GetGenderById(product.GenderId))
+                        Seasons = _mapper.Map<List<Season>>(product.Season),
+                        Gender = _mapper.Map<Gender>(_searchService.GetGenderById(product.GenderId)),
                     });
                 }
                 var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());

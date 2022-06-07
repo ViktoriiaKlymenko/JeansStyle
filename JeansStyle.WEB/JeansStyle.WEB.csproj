@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\dist\js" />
     <Folder Include="wwwroot\icons\" />
     <Folder Include="wwwroot\images\Jeans\" />
     <Folder Include="wwwroot\images\clothes\" />
