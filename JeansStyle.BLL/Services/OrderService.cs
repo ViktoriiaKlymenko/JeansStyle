@@ -20,6 +20,7 @@ namespace JeansStyle.BLL.Services
         public void Create(OrderDto orderDto)
         {
             _repository.Add(_mapper.Map<Order>(orderDto));
+            _repository.Clear();
         }
     }
 }

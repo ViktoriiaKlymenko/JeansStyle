@@ -2,9 +2,11 @@
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.BLL.Models;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
+using JeansStyle.DAL.Data.Specifications;
 using JeansStyle.DAL.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace JeansStyle.BLL.Services
 {
@@ -22,20 +24,19 @@ namespace JeansStyle.BLL.Services
             _searchService = searchService;
         }
 
-        public CategoriesByGender GetCategoriesByGender()
+        public async Task<CategoriesByGenderDto> GetCategoriesByGender()
         {
             var categoriesByGender = new CategoriesByGender
             {
                 Men = new List<Category>(),
                 Women = new List<Category>()
             };
-            var categoriesDto = _searchService.GetAllCategories();
-            var categories = _mapper.Map<List<Category>>(categoriesDto);
 
-            //categoriesByGender.Men = categories.Where(c => c.Products.Any(p => (int)p.Gender == 0)).Distinct().ToList();
-            //categoriesByGender.Women = categories.Where(c => c.Products.Any(p => (int)p.Gender == 1)).Distinct().ToList();
 
-            return categoriesByGender;
+            categoriesByGender.Men = await _categoryRepository.ListAsync(new CategoriesByGenderMenSpec());
+            categoriesByGender.Women = await _categoryRepository.ListAsync(new CategoriesByGenderWomenSpec());
+            _categoryRepository.Clear();
+            return _mapper.Map<CategoriesByGenderDto>(categoriesByGender);
 
 
         }

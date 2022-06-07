@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.DAL.Domain.Models
 {
-    public class Order
+    public class Order: AuditableEntity
     {
         public Guid Id { get; set; }
         public List<ProductSize> ProductSizes { get; set; }

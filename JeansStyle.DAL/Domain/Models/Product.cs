@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JeansStyle.DAL.Domain.Models
 {
-    public class Product
+    public class Product: AuditableEntity
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

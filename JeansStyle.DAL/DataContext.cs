@@ -1,10 +1,7 @@
 ﻿using JeansStyle.DAL.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace JeansStyle.DAL
 {
@@ -26,7 +23,48 @@ namespace JeansStyle.DAL
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+        }
 
+        public override int SaveChanges()
+        {
+            ChangeTracker.DetectChanges();
+
+            Audit();
+
+            return base.SaveChanges();
+        }
+
+
+        private void Audit()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is AuditableEntity
+                    && (e.State == EntityState.Added || e.State == EntityState.Modified))
+                .ToArray();
+
+            if (!entries.Any())
+                return;
+
+ 
+
+            foreach (var entityEntry in entries)
+            {
+                if (entityEntry.State == EntityState.Added)
+                {
+                    ((AuditableEntity)entityEntry.Entity).CreatedDate = DateTime.UtcNow;
+                }
+                else
+                {
+                    Entry((AuditableEntity)entityEntry.Entity).Property(p => p.CreatedDate).IsModified = false;
+                }
+
+                ((AuditableEntity)entityEntry.Entity).UpdatedDate = DateTime.UtcNow;
+
+            }
+
+            ChangeTracker.DetectChanges();
         }
     }
 }

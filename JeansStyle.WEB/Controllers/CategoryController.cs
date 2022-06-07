@@ -2,6 +2,7 @@
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace JeansStyle.WEB.Controllers
 {
@@ -18,11 +19,11 @@ namespace JeansStyle.WEB.Controllers
             _categoryService = categoryService;
         }
 
-        public PartialViewResult Index()
+        public async Task<PartialViewResult> Index()
         {
 
 
-            var modelDto = _categoryService.GetCategoriesByGender();
+            var modelDto = await _categoryService.GetCategoriesByGender();
             var model = _mapper.Map<CategoriesByGenderViewModel>(modelDto);
 
             return PartialView("~/Views/Shared/_PartialView.cshtml", model);

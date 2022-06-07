@@ -18,68 +18,63 @@
 
 
 <div class="main-content">
-    @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new {enctype="multipart/form-data"}))
+    @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-
-        <label for="title">Title:</label>
-
-        <br />
-        <input type="text" name="title" />
-
-        <br />
-
-        <br />
-
-        <label for="price">Price:</label>
-
-        <br />
-        <input type="text" name="price" />
-
-        <br />
-
-        <br />
-
-        <label>Description:</label>
-
-        <br />
-        <input type="description" name="description" />
-
-        <br />
-
-        <br />
         <div class="form-group">
-             <label for="Category">Category:</label>
-            @Html.DropDownListFor(model=>model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Categories)
-        </div>
-        <br />
-        <br />
-        <div class="form-group">
-             <label for="Season">Season:</label>
-            @Html.DropDownListFor(model => model.SeasonId,  (IEnumerable<SelectListItem>)ViewBag.Seasons, new { @class = "form-control", multiple = "multiple", size = "5" })
-        </div>
-        <br />
-        <br />
-        <div class="form-group">
-            <label for="Gender">Gender:</label>
-            @Html.DropDownListFor(model=>model.GenderId, (IEnumerable<SelectListItem>)ViewBag.Genders)
-        </div>
-        <br />
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="title">Title:</label>
 
-        <br />
-
-         <label>Аватар</label>
-        <input name="Image" type="file" class="form-control" />
-
-        @*<div class="form-group">
-            <label asp-for="Image" class="control-label"></label>
-            <div class="custom-file">
-                <input asp-for="Image" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
+                <input type="text" name="title" />
             </div>
-            <span asp-validation-for="Image" class="text-danger">You must choose photo</span>
-        </div>*@
+        </div>
 
-        <input type="submit" OnClientClick="return ValidateForm();" value="Send" />
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+
+                <label for="price">Price:</label>
+                <input type="number" min="1" max="999" name="price" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+
+                <label>Description:</label>
+                <input type="description" name="description" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="Category">Category:</label>
+                @Html.DropDownListFor(model=>model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Categories)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="Season">Season:</label>
+                @Html.DropDownListFor(model => model.SeasonId,  (IEnumerable<SelectListItem>)ViewBag.Seasons, new { @class = "form-control", multiple = "multiple", size = "5" })
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="Gender">Gender:</label>
+                @Html.DropDownListFor(model=>model.GenderId, (IEnumerable<SelectListItem>)ViewBag.Genders)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label>Photo:</label>
+                <input name="Image" type="file" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
     }
 
 

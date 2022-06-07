@@ -33,18 +33,21 @@ namespace JeansStyle.BLL.Services
             var product = _mapper.Map<Product>(productDto);
             
             _repository.Add(product);
+            _repository.Clear();
         }
 
         public void UpdateProduct(ProductDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
             _repository.Update(product);
+            _repository.Clear();
         }
 
         public void DeleteProduct(ProductDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
             _repository.Delete(product);
+            _repository.Clear();
         }
 
         public SearchResponse GetAllProducts()
@@ -53,7 +56,7 @@ namespace JeansStyle.BLL.Services
             {
                 Products = _mapper.Map<List<ProductDto>>(_repository.GetAll())
             };
-
+            _repository.Clear();
             return searchResponse;
         }
 
@@ -64,6 +67,7 @@ namespace JeansStyle.BLL.Services
             var product = _mapper.Map<Product>(productDto);
 
             _repository.Update(product);
+            _repository.Clear();
         }
     }
 }

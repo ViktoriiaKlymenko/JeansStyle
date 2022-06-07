@@ -56,6 +56,20 @@ namespace JeansStyle.WEB.Controllers
             return View();
         }
 
+        public async Task<ActionResult> GetProductDetails(Guid id)
+        {
+            var product = await _searchService.GetProductById(id);
+            
+            var productSizes = await _productSizeService.GetProductSizeByProductId(id);
+            foreach(var productSize in productSizes)
+            {
+                productSize.Size.Name = await _productSizeService.GetNameById(productSize.Size.Id);
+            }
+            ViewBag.ProductSizes = productSizes;
+            ViewBag.Product = product;
+            return View();
+        }
+
         [HttpGet]
         //[ValidateAntiForgeryToken]
         public ActionResult Create()
@@ -120,8 +134,8 @@ namespace JeansStyle.WEB.Controllers
 
                 productViewModel.Title = string.Join(" ", productViewModel.Title.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
-                var category = _mapper.Map<Category>(_searchService.GetCategoryById(Guid.Parse(productViewModel.CategoryId)));
-                var gender = _mapper.Map<Gender>(_searchService.GetGenderById(Guid.Parse(productViewModel.GenderId)));
+                var category = _mapper.Map<Category>(await _searchService.GetCategoryById(Guid.Parse(productViewModel.CategoryId)));
+                var gender = _mapper.Map<Gender>(await _searchService.GetGenderById(Guid.Parse(productViewModel.GenderId)));
                 var seasons = _mapper.Map<List<Season>>(_searchService.GetSeasonsById(productViewModel.SeasonId));
 
                 product = new Product()
@@ -150,7 +164,7 @@ namespace JeansStyle.WEB.Controllers
         public ActionResult Update(Guid id)
         {
             var categories = _searchService.GetAllCategories();
-            var productDto = _searchService.GetById(id);
+            var productDto = _searchService.GetProductById(id);
             var product = _mapper.Map<Product>(productDto);
 
             ViewBag.Categories = categories;

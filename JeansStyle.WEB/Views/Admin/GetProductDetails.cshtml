@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Product details";
+}
+
+<div class="main-content">
+<label for="title">Title:@ViewBag.Product.Title</label>
+<br />
+
+
+<label for="price">Price: @ViewBag.Product.Price</label>
+
+<br />
+
+<label>Description: @ViewBag.Product.Description</label>
+<br />
+
+<label for="Category">Category: @ViewBag.Product.Category</label>
+<br />
+
+
+<label for="Season">Season:</label>
+<br />
+
+
+<label for="Gender">Gender:</label>
+
+<br />
+
+<label>Photo:</label>
+<img src="@ViewBag.Product.Image"
+
+@foreach (var productSize in ViewBag.ProductSizes)
+{
+    <tr>
+        <td>Name: @productSize.Size.Name</td>
+        <td>Amount: @productSize.Amount</td>
+    </tr>
+}
+
+</div>

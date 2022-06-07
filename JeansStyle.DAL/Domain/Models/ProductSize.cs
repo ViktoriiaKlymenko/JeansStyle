@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.DAL.Domain.Models
 {
-    public class ProductSize
+    public class ProductSize : AuditableEntity
     {
         public Guid Id { get; set; }
         public Guid ProductId { get; set; }
@@ -13,7 +13,5 @@ namespace JeansStyle.DAL.Domain.Models
         public int Amount { get; set; }
         public Guid SizeId { get; set; }
         public virtual Size Size { get; set; }
-        public Guid OrderId { get; set; }
-        public virtual Order Order { get; set; }    
     }
 }

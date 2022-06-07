@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.DAL.Domain.Models
 {
-    public class UserCredentials
+    public class UserCredentials: AuditableEntity
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

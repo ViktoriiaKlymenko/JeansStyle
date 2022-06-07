@@ -4,6 +4,7 @@ using JeansStyle.WEB.Models;
 using JeansStyle.WEB.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace JeansStyle.WEB.Controllers
 {
@@ -21,9 +22,9 @@ namespace JeansStyle.WEB.Controllers
 
         }
 
-        public string GetData(Cart cart)
+        public async Task<string> GetData(Cart cart)
         {
-            var product = _mapper.Map<Product>(_searchService.GetProductById(cart.ProductId));
+            var product = _mapper.Map<Product>(await _searchService.GetProductById(cart.ProductId));
             var size = _mapper.Map<Size>(_searchService.GetSizeById(cart.SizeId));
             var productSize = _mapper.Map<ProductSize>(_searchService.GetProductSizesById(product.Id, cart.SizeId));
             var model = new CartApiModel()
