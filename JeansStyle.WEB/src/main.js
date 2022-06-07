@@ -4,11 +4,13 @@ import {createApp} from 'vue'
 // Components
 import CartComponent from "@/components/Cart/CartComponent";
 import AddToCartButton from "@/components/Cart/AddToCartButton";
+import ProductCard from "@/components/Catalog/ProductCard";
 
 createApp({
     components: {
         CartComponent,
         AddToCartButton,
+        ProductCard
     },
 }).mount('#app')
 

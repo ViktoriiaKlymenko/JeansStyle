@@ -3,10 +3,6 @@
 }
 
 /* card */
-.dress-card-img-top {
-    width: 100%;
-    border-radius: 7px 7px 0 0;
-}
 
 .dress-card-body {
     padding: 1rem;
@@ -34,7 +30,11 @@
 .dress-card-para {
     margin-bottom: 0.2rem;
     font-size: 1.0rem;
-    margin-bottom: 0rem;
+}
+
+.dress-card-para-small {
+    font-size: 14px;
+    transition: 0.3s;
 }
 
 .dress-card {

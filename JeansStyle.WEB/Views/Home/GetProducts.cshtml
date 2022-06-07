@@ -6,46 +6,8 @@
 }
 
 <div class="main-content">
-    <div class="container">
-        <br>
-        <br>
-        @foreach (var product in ViewBag.Products)
-        {
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="dress-card">
-                        <div class="dress-card-head">
-                            <img class="dress-card-img-top" src="@product.Image" alt="">
-                        </div>
-                        <div class="dress-card-body">
-                            <h4 class="dress-card-title">@product.Title</h4>
-                            <p class="dress-card-para">Made with love</p>
-                            <p class="dress-card-para">
-                                <span class="dress-card-price">@Math.Round(@product.Price, 2) &#36;</span><span class="dress-card-crossed"></span><span class="dress-card-off"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <div class="description">
-                        <p><b>Gender:</b> @product.Gender.Name</p>
-                        <p><b>Category:</b> @product.Category.Name</p>
-                        <div class="form-group">
-                            <label for="Season"><b>Size:</b></label>
-                            @Html.DropDownListFor(model => model.Id, (IEnumerable<SelectListItem>)ViewBag.Sizes, new
-                            {
-                                @class = "form-control"
-                            })
-                        </div>
-
-                        <p>Description: @product.Description</p>
-                    </div>
-                    <div class="row">
-                        <add-to-cart-button product-id="@product.Id"></add-to-cart-button>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
+    @foreach (var product in ViewBag.Products)
+    {
+        <product-card :product='@Json.Serialize(product)'></product-card>
+    }
 </div>

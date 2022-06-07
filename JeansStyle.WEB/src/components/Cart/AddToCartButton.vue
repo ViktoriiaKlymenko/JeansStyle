@@ -26,7 +26,7 @@ export default {
     },
     addToCart() {
       this.extractCart()
-      
+
       let _this = this
 
       let product = this.cart.find(product => {
@@ -49,6 +49,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
