@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Mapping;
-using JeansStyle.BLL.Models;
+using JeansStyle.DAL.Data.Specifications;
 using JeansStyle.WEB.Models;
 using JeansStyle.WEB.Models.Enums;
 using System;

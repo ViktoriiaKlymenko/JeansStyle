@@ -4,14 +4,16 @@ using JeansStyle.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JeansStyle.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220607122830_ProductSizeChange")]
+    partial class ProductSizeChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,10 +140,10 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SizeId")
+                    b.Property<Guid?>("SizeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -284,15 +286,11 @@ namespace JeansStyle.DAL.Migrations
 
                     b.HasOne("JeansStyle.DAL.Domain.Models.Product", "Product")
                         .WithMany("ProductSizes")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId");
 
                     b.HasOne("JeansStyle.DAL.Domain.Models.Size", "Size")
                         .WithMany("ProductSizes")
-                        .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SizeId");
 
                     b.Navigation("Product");
 

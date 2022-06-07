@@ -4,14 +4,16 @@ using JeansStyle.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JeansStyle.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220607103945_AuditableEntity")]
+    partial class AuditableEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,7 +137,7 @@ namespace JeansStyle.DAL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("OrderId")
+                    b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProductId")
@@ -278,9 +280,11 @@ namespace JeansStyle.DAL.Migrations
 
             modelBuilder.Entity("JeansStyle.DAL.Domain.Models.ProductSize", b =>
                 {
-                    b.HasOne("JeansStyle.DAL.Domain.Models.Order", null)
+                    b.HasOne("JeansStyle.DAL.Domain.Models.Order", "Order")
                         .WithMany("ProductSizes")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("JeansStyle.DAL.Domain.Models.Product", "Product")
                         .WithMany("ProductSizes")
@@ -293,6 +297,8 @@ namespace JeansStyle.DAL.Migrations
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
 

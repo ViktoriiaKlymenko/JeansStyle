@@ -3,33 +3,39 @@
     ViewData["Title"] = "Product details";
 }
 
-@model Product
-
-div class="main-content">
-        <label for="title">Title:@Model.Title</label>
-
+<div class="main-content">
+<label for="title">Title:@ViewBag.Product.Title</label>
+<br />
 
 
-        <label for="price">Price: @Model.Price</label>
+<label for="price">Price: @ViewBag.Product.Price</label>
+
+<br />
+
+<label>Description: @ViewBag.Product.Description</label>
+<br />
+
+<label for="Category">Category: @ViewBag.Product.Category</label>
+<br />
 
 
-
-        <label>Description: @Model.Description</label>
-       
-
-        <label for="Category">Category: @Model.Category</label>
-      
+<label for="Season">Season:</label>
+<br />
 
 
-        <label for="Season">Season:</label>
-        
+<label for="Gender">Gender:</label>
 
+<br />
 
-        <label for="Gender">Gender:</label>
+<label>Photo:</label>
+<img src="@ViewBag.Product.Image"
 
-
-
-        <label>Photo:</label>
-        <input name="Image" type="file" class="form-control" />
+@foreach (var productSize in ViewBag.ProductSizes)
+{
+    <tr>
+        <td>Name: @productSize.Size.Name</td>
+        <td>Amount: @productSize.Amount</td>
+    </tr>
+}
 
 </div>

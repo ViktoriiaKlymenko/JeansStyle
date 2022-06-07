@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using JeansStyle.BLL.DTOs;
+using JeansStyle.BLL.Models;
+using JeansStyle.DAL.Data.Specifications;
 using JeansStyle.DAL.Domain.Models;
 
 namespace JeansStyle.BLL.Mapping
@@ -16,6 +18,7 @@ namespace JeansStyle.BLL.Mapping
             CreateMap<SizeDto, Size>().ReverseMap();
             CreateMap<ProductSizeDto, ProductSize>().ReverseMap();
             CreateMap<OrderDto, Order>().ReverseMap();
+            CreateMap<CategoriesByGenderDto, CategoriesByGender>().ReverseMap();
         }
     }
 }

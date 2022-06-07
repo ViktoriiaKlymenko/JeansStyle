@@ -1,22 +1,30 @@
 ﻿using Ardalis.Specification;
 using JeansStyle.DAL.Data.RepositoryInterfaces;
-using JeansStyle.DAL.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ardalis.Specification.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace JeansStyle.DAL.Data.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public sealed class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         protected DataContext _context;
         private readonly ISpecificationEvaluator<T> _specificationEvaluator;
         public BaseRepository(DataContext context)
+        : this(context, new SpecificationEvaluator<T>())
+        {
+        }
+        public BaseRepository(DataContext context,
+            ISpecificationEvaluator<T> specificationEvaluator)
         {
             _context = context;
+            _specificationEvaluator = specificationEvaluator;
         }
+
 
         public void Dispose()
         {
@@ -28,11 +36,20 @@ namespace JeansStyle.DAL.Data.Repositories
             return _context.Set<T>().Where(predicate).ToList();
         }
 
+        public async Task<T> GetBySpecAsync(ISpecification<T> specification) =>
+         await ApplySpecification(specification).FirstOrDefaultAsync();
+
+
+
         public async Task<List<T>> ListAsync(ISpecification<T> specification) =>
                     await ApplySpecification(specification).ToListAsync();
 
         private IQueryable<T> ApplySpecification(ISpecification<T> specification) =>
         _specificationEvaluator.GetQuery(GetDbSet().AsQueryable(), specification);
+
+        private DbSet<T> GetDbSet() =>
+           _context.Set<T>();
+        public void Clear() => _context.ChangeTracker.Clear();
 
         public T FindWhere(Func<T, bool> predicate)
         {
@@ -51,6 +68,7 @@ namespace JeansStyle.DAL.Data.Repositories
 
         public void Add(T item)
         {
+            _context.Attach(item);
             _context.Set<T>().Add(item);
             _context.SaveChanges();
         }
@@ -66,5 +84,8 @@ namespace JeansStyle.DAL.Data.Repositories
             _context.Set<T>().Remove(item);
             _context.SaveChanges();
         }
+
+
+      
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JeansStyle.WEB.Controllers
 {
@@ -32,9 +33,9 @@ namespace JeansStyle.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetProductSizes(Guid id)
+        public async Task<ActionResult> GetProductSizes(Guid id)
         {
-            var productDto = _searchService.GetById(id);
+            var productDto = await _searchService.GetProductById(id);
             var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
             //var productSizes = _searchService.GetProductSizesById(id);
             var sizeSelect = new List<SelectListItem>();
@@ -52,9 +53,9 @@ namespace JeansStyle.WEB.Controllers
 
 
         [HttpGet]
-        public ActionResult AddProductSize(Guid id)
+        public async Task<ActionResult> AddProductSize(Guid id)
         {
-            var productDto = _searchService.GetById(id);
+            var productDto = await _searchService.GetProductById(id);
             ViewBag.Product = productDto;
             var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
             
@@ -71,21 +72,22 @@ namespace JeansStyle.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddProductSize(Guid productId, Size size, int amount)
+        public async Task<ActionResult> AddProductSize(Guid productId, Size size, int amount)
         {
             if (ModelState.IsValid)
             {
-                var product = _mapper.Map<Product>(_searchService.GetProductById(productId));
-                size = _mapper.Map<Size>(_sizeService.GetById(size.Id));
-                var productSize = new ProductSize()
+                var productDto = await _searchService.GetProductById(productId);
+
+                var sizeDto = await _sizeService.GetById(size.Id);
+                var productSizeDto = new ProductSizeDto()
                 {
-                    Product = product,
-                    Size = size,
+                    Product = productDto,
+                    Size = sizeDto,
                     Amount=amount
                 };
-                var productSizeDto = _mapper.Map<ProductSizeDto>(productSize);
 
                 _productSizeService.AddProductSizes(productSizeDto);
+                return RedirectToAction("GetProductDetails", "Admin", productId);
             }
             return View("NotFound");
         }
