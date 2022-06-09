@@ -6,6 +6,7 @@
 
 <script>
 import {toastSuccess} from "@/main";
+import {extractCart, storeCart} from "@/components/Cart/cart";
 
 export default {
   name: "AddToCartButton",
@@ -15,19 +16,12 @@ export default {
   },
   data() {
     return {
-      storagePath: 'cartProducts',
       cart: [],
     }
   },
   methods: {
-    extractCart() {
-      this.cart = JSON.parse(localStorage.getItem(this.storagePath)) ?? []
-    },
-    storeCart() {
-      localStorage.setItem(this.storagePath, JSON.stringify(this.cart))
-    },
     addToCart() {
-      this.extractCart()
+      this.cart = extractCart()
 
       let _this = this
 
@@ -45,7 +39,7 @@ export default {
         product.quantity++
       }
 
-      this.storeCart()
+      storeCart(this.cart)
 
       toastSuccess('Product added to cart!')
     },

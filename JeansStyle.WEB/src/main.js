@@ -1,11 +1,14 @@
 // Dependencies
 import {createApp} from 'vue'
 import Swal from "sweetalert2";
+import mitt from "mitt";
 
 // Components
 import CartComponent from "@/components/Cart/CartComponent";
 import AddToCartButton from "@/components/Cart/AddToCartButton";
 import ProductCard from "@/components/Catalog/ProductCard";
+
+export const emitter = mitt();
 
 let app = createApp({
     components: {

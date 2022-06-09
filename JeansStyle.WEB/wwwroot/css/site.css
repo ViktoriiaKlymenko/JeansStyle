@@ -73,3 +73,7 @@ body {
     margin-top: 80px;
     margin-bottom: 150px;
 }
+
+.bg-accent {
+  background: #E06C9F;
+}
