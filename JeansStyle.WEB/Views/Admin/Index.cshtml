@@ -21,4 +21,19 @@
             </a>
         </div>
     </div>
+     <div class="col-6 col-lg-3">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@ViewBag.ProductsCount</h3>
+                <p>Orders</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a asp-controller="Order" asp-action="GetOrders" class="small-box-footer">
+                Go to orders 
+                <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
 </div>

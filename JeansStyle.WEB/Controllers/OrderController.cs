@@ -3,6 +3,7 @@ using JeansStyle.BLL.DTOs;
 using JeansStyle.BLL.Interfaces;
 using JeansStyle.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace JeansStyle.WEB.Controllers
@@ -21,7 +22,7 @@ namespace JeansStyle.WEB.Controllers
             return View();
         }
 
-        public ActionResult Complete(List<ProductSize> productSizes, UserCredentialsViewModel model)
+        public ActionResult Complete(ProductSize productSizes, UserCredentialsViewModel model)
         {
             var products =_mapper.Map<List<ProductSizeDto>>(productSizes);
             var order = new OrderDto();
@@ -39,6 +40,14 @@ namespace JeansStyle.WEB.Controllers
             order.TotalPrice = totalPrice;
             _orderService.Create(order);
             return RedirectToAction("ContactCustomer");
+        }
+
+        public ActionResult GetOrders()
+        {
+            var orders = _orderService.GetAll();
+
+            ViewBag.Orders = orders;
+            return View();
         }
 
         public ActionResult ContactCustomer()

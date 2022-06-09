@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Products";
+}
+
+<div class="row">
+    <div class="card col-12">
+        <div class="card-header">
+            <a asp-controller="Admin" asp-action="Create" class="btn btn-success">
+                <i class="fa-solid fa-plus"></i>
+                Add new product
+            </a>
+        </div>
+
+        <div class="card-body table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Image</td>
+                        <td>Description</td>
+
+                        <td style="min-width: 100px;"></td>
+                    </tr>
+                </thead>
+                @foreach (var order in ViewBag.Orders)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.Title</td>
+                        <td>@order.Image</td>
+                        <td>@order.Description</td>
+
+                        <td>
+                            <div>
+                                <a asp-controller="Order"
+                               asp-action="Complete"
+                               asp-route-id="@order.Id"
+                               class="btn btn-success">
+                                    <i class="fa-solid fa-check"></i>
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

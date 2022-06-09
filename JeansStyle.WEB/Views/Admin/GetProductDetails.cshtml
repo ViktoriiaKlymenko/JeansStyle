@@ -1,41 +1,58 @@
 ﻿@{
     Layout = "_Admin";
-    ViewData["Title"] = "Product details";
+    ViewData["Title"] = "Product sizes";
 }
 
 <div class="main-content">
-<label for="title">Title:@ViewBag.Product.Title</label>
-<br />
 
 
-<label for="price">Price: @ViewBag.Product.Price</label>
-
-<br />
-
-<label>Description: @ViewBag.Product.Description</label>
-<br />
-
-<label for="Category">Category: @ViewBag.Product.Category</label>
-<br />
+    <img src="@ViewBag.Product.Image" />
+    <br />
+    <label for="title">Title: @ViewBag.Product.Title</label>
+    <br />
 
 
-<label for="Season">Season:</label>
-<br />
+    <label for="price">Price: @ViewBag.Product.Price</label>
 
+    <br />
 
-<label for="Gender">Gender:</label>
+    <label>Description: @ViewBag.Product.Description</label>
+    <br />
 
-<br />
+    <br />
 
-<label>Photo:</label>
-<img src="@ViewBag.Product.Image"
+    <div class="card-body table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>SIZES </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Name </td>
+                    <td>Amount</td>
+                </tr>
+            </thead>
 
-@foreach (var productSize in ViewBag.ProductSizes)
-{
-    <tr>
-        <td>Name: @productSize.Size.Name</td>
-        <td>Amount: @productSize.Amount</td>
-    </tr>
-}
+            @foreach (var productSize in ViewBag.ProductSizes)
+            {
+                <tr>
+                    <td>@productSize.Size.Name</td>
+                    <td> @productSize.Amount</td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <a asp-controller="ProductSize"
+                       asp-action="AddProductSize"
+                       asp-route-id="@ViewBag.Product.Id"
+                       class="btn btn-outline-primary">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 
 </div>
