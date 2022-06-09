@@ -79,6 +79,12 @@ namespace JeansStyle.DAL.Data.Repositories
             _context.SaveChanges();
         }
 
+        public void UpdateRange(List<T> items)
+        {
+            _context.Set<T>().UpdateRange(items);
+            _context.SaveChanges();
+        }
+
         public void Delete(T item)
         {
             _context.Set<T>().Remove(item);
