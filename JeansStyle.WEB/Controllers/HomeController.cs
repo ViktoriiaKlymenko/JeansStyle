@@ -49,6 +49,7 @@ namespace JeansStyle.WEB.Controllers
                     }
                     productsToView.Add(new ProductViewModelWithSizes
                     {
+                        Id = product.Id,
                         Category = _mapper.Map<Category>(await _searchService.GetCategoryById(product.Category.Id)),
                         Description = product.Description,
                         Title = product.Title,
@@ -78,22 +79,22 @@ namespace JeansStyle.WEB.Controllers
             return View("NotFound");
         }
 
-        public ActionResult GetProductCard([FromQuery] string searchRequest)
-        {
-            if (ModelState.IsValid)
-            {
-                var products = _searchService.GetProductsByTitleAndDescription(searchRequest);
-                if (products.Products.Count == 0)
-                {
-                    ViewBag.Request = searchRequest;
-                    return View("NotFound");
-                }
-                ViewBag.Products = products.Products;
-                return View();
-            }
-            ViewBag.Request = searchRequest;
-            return View("NotFound");
-        }
+        // public ActionResult GetProductCard([FromQuery] string searchRequest)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         var products = _searchService.GetProductsByTitleAndDescription(searchRequest);
+        //         if (products.Products.Count == 0)
+        //         {
+        //             ViewBag.Request = searchRequest;
+        //             return View("NotFound");
+        //         }
+        //         ViewBag.Products = products.Products;
+        //         return View();
+        //     }
+        //     ViewBag.Request = searchRequest;
+        //     return View("NotFound");
+        // }
 
         [HttpGet]
         public ActionResult GetProductByCategory([FromQuery] string category)
