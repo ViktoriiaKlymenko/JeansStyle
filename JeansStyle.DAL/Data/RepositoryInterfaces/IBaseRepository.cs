@@ -14,6 +14,7 @@ namespace JeansStyle.DAL.Data.RepositoryInterfaces
         List<T> GetAll();
         void Add(T item);
         void Update(T item);
+        void UpdateRange(List<T> items);
         void Delete(T item);
         void Clear();
         Task<List<T>> ListAsync(ISpecification<T> specification);
