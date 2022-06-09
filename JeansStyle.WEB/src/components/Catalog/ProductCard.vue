@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="row mb-5 product-card">
+  <form @submit.prevent="addToCart" class="row mb-5 product-card">
     <div class="col-12 col-md-4 col-lg-3">
       <div class="dress-card">
         <div class="dress-card-head col-8 col-md-12 offset-2 offset-md-0">
@@ -30,19 +30,27 @@
           </label>
         </div>
         <div class="col-12 col-md-4 col-lg-3">
-          <size-selector :product-sizes="product.productSizes"></size-selector>
+          <size-selector
+              :product-sizes="product?.productSizes"
+              :value="productSizeId"
+              @input="e => this.productSizeId = e"
+          ></size-selector>
         </div>
       </div>
 
       <div class="description mt-3 pt-2 border-top">
-        <p><b>Description:</b> {{product.description}}</p>
+        <p><b>Description:</b> {{ product.description }}</p>
       </div>
 
       <div class="row">
-        <add-to-cart-button product-id="@product.Id"></add-to-cart-button>
+        <add-to-cart-button
+            :product-id="product.id"
+            :product-size-id="productSizeId"
+            ref="addToCartButton"
+        ></add-to-cart-button>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -59,8 +67,20 @@ export default {
     AddToCartButton,
   },
   props: {
-    product: Product
+    product: {
+      type: Product,
+    }
   },
+  data() {
+    return {
+      productSizeId: "",
+    }
+  },
+  methods: {
+    addToCart() {
+      this.$refs.addToCartButton.addToCart()
+    }
+  }
 }
 </script>
 
@@ -82,7 +102,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
   .dress-card-img-top {
     border-radius: 7px 7px 0 0;
   }

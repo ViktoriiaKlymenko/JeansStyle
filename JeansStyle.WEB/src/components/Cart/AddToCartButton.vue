@@ -1,10 +1,12 @@
 ﻿<template>
-  <button class="btn col-md-6 card-button" @click="addToCart">
+  <button class="btn col-md-6 card-button" type="submit">
     <span class="card-button-inner bag-button w-100 d-block">Add to Bag</span>
   </button>
 </template>
 
 <script>
+import {toastSuccess} from "@/main";
+
 export default {
   name: "AddToCartButton",
   props: {
@@ -44,6 +46,8 @@ export default {
       }
 
       this.storeCart()
+
+      toastSuccess('Product added to cart!')
     },
   }
 }

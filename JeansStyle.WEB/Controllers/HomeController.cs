@@ -57,7 +57,7 @@ namespace JeansStyle.WEB.Controllers
                         Price = product.Price,
                         Season = _mapper.Map<List<Season>>(product.Season),
                         Gender = _mapper.Map<Gender>(await _searchService.GetGenderById(product.GenderId)),
-                        Sizes = productSizes
+                        ProductSizes = productSizes
                     });
                     
                 }

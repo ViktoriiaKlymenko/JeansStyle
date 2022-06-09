@@ -1,6 +1,6 @@
 ﻿import {Gender} from "./Gender";
 import {Category} from "./Category";
-import {ProductSizes} from "./ProductSizes";
+import {ProductSize} from "@/Classes/ProductSize";
 
 export class Product {
     constructor(
@@ -13,14 +13,16 @@ export class Product {
         gender,
         category
     ) {
-        console.log(1)
         this.id = id
         this.title = title
         this.image = image
         this.description = description
         this.price = parseFloat(price).toFixed(2)
 
-        this.productSizes = new ProductSizes(productSizes)
+        this.productSizes = productSizes.forEach(productSize => {
+            this.productSizes.push(new ProductSize(...productSize))
+        })
+        
         this.gender = new Gender(...gender)
         this.category = new Category(...category)
     }

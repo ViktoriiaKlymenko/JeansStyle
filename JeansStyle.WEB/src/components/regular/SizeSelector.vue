@@ -1,23 +1,30 @@
 ﻿<template>
-  <select name="product_size" v-model="selectedProductSize" class="form-control">
-    <option value="">Select size</option>
-    <option :value="productSize.size.id" v-for="productSize in productSizes?.productSizes">
-      {{productSize.size.name}}
+  <select required name="productSizeId" v-model="selectedProductSizeId" class="form-control">
+    <option disabled value="">Select size</option>
+    <option :value="productSize.id" v-for="productSize in productSizes">
+      {{ productSize.name }}
     </option>
   </select>
 </template>
 
 <script>
-import {ProductSizes} from "@/Classes/ProductSizes";
-
 export default {
   name: "SizeSelector",
   props: {
-    productSizes: ProductSizes,
+    productSizes: Array,
+    value: String,
   },
   data() {
     return {
-      selectedProductSize: ""
+      selectedProductSizeId: null,
+    }
+  },
+  mounted() {
+    this.selectedProductSizeId = this.value
+  },
+  watch: {
+    selectedProductSizeId() {
+      this.$emit('input', this.selectedProductSizeId)
     }
   }
 }

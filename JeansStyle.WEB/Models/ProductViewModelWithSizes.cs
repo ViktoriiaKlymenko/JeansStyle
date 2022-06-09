@@ -20,6 +20,6 @@ namespace JeansStyle.WEB.Models
         public string Image { get; set; }
 
         public decimal Price { get; set; }
-        public List<Size> Sizes { get; set; }
+        public List<Size> ProductSizes { get; set; }
     }
 }
