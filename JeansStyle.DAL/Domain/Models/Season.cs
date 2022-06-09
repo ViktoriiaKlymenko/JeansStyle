@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace JeansStyle.DAL.Domain.Models
 {
-    public class Season
+    public class Season: AuditableEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

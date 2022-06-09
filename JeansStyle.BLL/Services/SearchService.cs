@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JeansStyle.DAL.Data.Specifications;
+using System.Diagnostics;
 
 namespace JeansStyle.BLL.Services
 {
@@ -37,12 +39,12 @@ namespace JeansStyle.BLL.Services
             _mapper = mapper;
         }
 
-        public SearchResponse GetProductsByTitleAndDescription(string keyword)
+        public async Task<SearchResponse> GetProductsByTitleAndDescription(string keyword)
         {
             var searchResponse = new SearchResponse();
-            searchResponse.Products = _mapper.Map<List<ProductDto>>(_repository.FindAllWhere(p => p.Title.ToLower().Contains(keyword.ToLower())));
-            searchResponse.Products.AddRange(_mapper.Map<List<ProductDto>>(_repository.FindAllWhere(p => p.Description.ToLower().Contains(keyword.ToLower()))));
-            searchResponse.Products.Distinct();
+            searchResponse.Products = _mapper.Map<List<ProductDto>>(await _repository.ListAsync(new ProductByKeywordSpec(keyword)));
+            _repository.Clear();
+
             return searchResponse;
         }
 
@@ -53,21 +55,16 @@ namespace JeansStyle.BLL.Services
             {
                 Products = _mapper.Map<List<ProductDto>>(_repository.FindAllWhere(p => p.CategoryId == id))
             };
-
+            _repository.Clear();
 
             return searchResponse;
         }
 
         public Guid GetCategoryIdByName(string name)
         {
-            return _categoryRepository.FindWhere(c => c.Name == name).Id;
-        }
-
-        public IEnumerable<string> GetAllCategoriesNames()
-        {
-            var smth = _categoryRepository.GetAll();
-            var names = smth.Select(s => s.Name);
-            return names;
+             var id = _categoryRepository.FindWhere(c => c.Name == name).Id;
+            _categoryRepository.Clear();
+            return id;
         }
 
         public List<CategoryDto> GetAllCategories()
@@ -78,6 +75,7 @@ namespace JeansStyle.BLL.Services
             {
                 categoriesDto.Add(_mapper.Map<CategoryDto>(category));
             }
+            _categoryRepository.Clear();
 
             return categoriesDto;
         }
@@ -88,6 +86,7 @@ namespace JeansStyle.BLL.Services
             {
                 Products = _mapper.Map<List<ProductDto>>(_repository.GetAll())
             };
+            _repository.Clear();
 
             return searchResponse;
         }
@@ -97,10 +96,10 @@ namespace JeansStyle.BLL.Services
             return _repository.Count();
         }
 
-        public ProductDto GetById(Guid id)
+        public async Task<ProductDto> GetProductById(Guid id)
         {
-            var product = _repository.FindWhere(p => p.Id == id);
-            var productDto = _mapper.Map<ProductDto>(product);
+            var productDto = _mapper.Map<ProductDto>(await _repository.GetBySpecAsync(new ProductByIdSpec(id)));
+            _repository.Clear();
 
             return productDto;
         }
@@ -108,13 +107,14 @@ namespace JeansStyle.BLL.Services
         {
             var product = _repository.FindWhere(p => p.Id == id);
             var productDto = _mapper.Map<ProductDto>(product);
+            _repository.Clear();
 
             return productDto;
         }
 
         public List<ProductSizeDto> GetProductSizesById(Guid productId, Guid sizeId)
         {
-            return _mapper.Map<List<ProductSizeDto>>(_productSizeRepository.FindAllWhere(ps => ps.ProductId == productId).Where(ps => ps.SizeId == sizeId));
+            return _mapper.Map<List<ProductSizeDto>>(_productSizeRepository.ListAsync(new ProductSizeByProductIdAndSizeId(productId, sizeId)));
         }
 
         public List<SeasonDto> GetAllSeasons()
@@ -127,14 +127,14 @@ namespace JeansStyle.BLL.Services
             return _mapper.Map<List<GenderDto>>(_genderRepository.GetAll());
         }
 
-        public CategoryDto GetCategoryById(Guid id)
+        public async Task<CategoryDto> GetCategoryById(Guid id)
         {
-            return _mapper.Map<CategoryDto>(_categoryRepository.FindWhere(c => c.Id == id));
+            return _mapper.Map<CategoryDto>(await _categoryRepository.GetBySpecAsync(new CategoryByIdSpec(id)));
         }
 
-        public GenderDto GetGenderById(Guid id)
+        public async Task<GenderDto> GetGenderById(Guid id)
         {
-            return _mapper.Map<GenderDto>(_genderRepository.FindWhere(g => g.Id == id));
+            return _mapper.Map<GenderDto>(await _genderRepository.GetBySpecAsync(new GenderByIdSpec(id)));
         }
 
         public List<SeasonDto> GetSeasonsById(List<string> ids)
@@ -152,10 +152,7 @@ namespace JeansStyle.BLL.Services
             throw new NotImplementedException();
         }
 
-        public ProductDto GetProductById(Guid productId)
-        {
-            return _mapper.Map<ProductDto>(_repository.FindWhere(p => p.Id == productId));
-        }
+    
 
         public SizeDto GetSizeById(Guid sizeId)
         {

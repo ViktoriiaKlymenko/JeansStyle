@@ -8,6 +8,7 @@ using JeansStyle.WEB.Models.Enums;
 using AutoMapper;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
 
 namespace JeansStyle.WEB.Controllers
 {
@@ -16,40 +17,48 @@ namespace JeansStyle.WEB.Controllers
         private readonly ISearchService _searchService;
         private readonly IMapper _mapper;
         private readonly ISizeService _sizeService;
+        private readonly IProductSizeService _productSizeService;
 
-        public HomeController(ILogger<HomeController> logger, ISearchService searchService, IMapper mapper, ISizeService sizeService)
+        public HomeController(ILogger<HomeController> logger, ISearchService searchService, IMapper mapper, ISizeService sizeService, IProductSizeService productSizeService)
         {
             _searchService = searchService;
             _mapper = mapper;
             _sizeService = sizeService;
+            _productSizeService = productSizeService;
         }
 
-        public ActionResult GetProducts([FromQuery] SearchRequest searchRequest)
+        public async Task<ActionResult> GetProducts([FromQuery] SearchRequest searchRequest)
         {
             if (ModelState.IsValid)
             {
 
-                var products = _searchService.GetProductsByTitleAndDescription(searchRequest.Request);
+                var products = await _searchService.GetProductsByTitleAndDescription(searchRequest.Request);
                 if (products.Products.Count == 0)
                 {
                     ViewBag.Request = searchRequest;
                     return View("NotFound");
                 }
-                var productsToView = new List<Product>();
+                var productsToView = new List<ProductViewModelWithSizes>();
 
                 foreach (var product in products.Products)
                 {
-                    productsToView.Add(new Product
+                    var productSizes = _mapper.Map<List<Size>>(await _productSizeService.GetSizeByProductId(product.Id));
+                    foreach(var productSize in productSizes)
                     {
-                        Id = product.Id,
-                        Category = _mapper.Map<Category>(_searchService.GetCategoryById(product.Category.Id)),
+                        productSize.Name = await _productSizeService.GetNameById(productSize.Id);
+                    }
+                    productsToView.Add(new ProductViewModelWithSizes
+                    {
+                        Category = _mapper.Map<Category>(await _searchService.GetCategoryById(product.Category.Id)),
                         Description = product.Description,
                         Title = product.Title,
                         Image = product.Image,
                         Price = product.Price,
-                        Seasons = _mapper.Map<List<Season>>(product.Season),
-                        Gender = _mapper.Map<Gender>(_searchService.GetGenderById(product.GenderId)),
+                        Season = _mapper.Map<List<Season>>(product.Season),
+                        Gender = _mapper.Map<Gender>(await _searchService.GetGenderById(product.GenderId)),
+                        Sizes = productSizes
                     });
+                    
                 }
                 var sizes = _mapper.Map<List<Size>>(_sizeService.GetAll());
 

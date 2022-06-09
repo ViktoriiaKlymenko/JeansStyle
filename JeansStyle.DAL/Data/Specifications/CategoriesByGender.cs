@@ -1,7 +1,7 @@
 ﻿using JeansStyle.DAL.Domain.Models;
 using System.Collections.Generic;
 
-namespace JeansStyle.BLL.Models
+namespace JeansStyle.DAL.Data.Specifications
 {
     public class CategoriesByGender
     {
