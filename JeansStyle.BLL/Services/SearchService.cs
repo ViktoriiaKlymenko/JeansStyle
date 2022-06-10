@@ -43,7 +43,6 @@ namespace JeansStyle.BLL.Services
         {
             var searchResponse = new SearchResponse();
             searchResponse.Products = _mapper.Map<List<ProductDto>>(await _repository.ListAsync(new ProductByKeywordSpec(keyword)));
-            _repository.Clear();
 
             return searchResponse;
         }
@@ -157,6 +156,11 @@ namespace JeansStyle.BLL.Services
         public SizeDto GetSizeById(Guid sizeId)
         {
             return _mapper.Map<SizeDto>(_sizeRepository.FindWhere(s => s.Id == sizeId));
+        }
+
+        public Guid GetGenderByName(string gender)
+        {
+            return _genderRepository.FindWhere(g=>g.Name == gender).Id;
         }
     }
 }

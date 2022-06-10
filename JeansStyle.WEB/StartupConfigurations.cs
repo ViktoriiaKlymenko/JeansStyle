@@ -30,6 +30,7 @@ namespace JeansStyle.WEB
             services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<IProductSizeService, ProductSizeService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IOrderService, OrderService>();
 
 
             return services;
@@ -43,6 +44,7 @@ namespace JeansStyle.WEB
             services.AddScoped<IBaseRepository<Season>, BaseRepository<Season>>();
             services.AddScoped<IBaseRepository<Gender>, BaseRepository<Gender>>();
             services.AddScoped<IBaseRepository<Size>, BaseRepository<Size>>();
+            services.AddScoped<IBaseRepository<Order>, BaseRepository<Order>>();
 
             return services;
         }

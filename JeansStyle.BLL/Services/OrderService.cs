@@ -16,10 +16,11 @@ namespace JeansStyle.BLL.Services
         private readonly IBaseRepository<ProductSize> _productSizeRepository;
         private readonly IMapper _mapper;
 
-        public OrderService(IBaseRepository<Order> repository, IMapper mapper)
+        public OrderService(IBaseRepository<Order> repository, IMapper mapper, IBaseRepository<ProductSize> productSizeRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _productSizeRepository = productSizeRepository;
         }
 
         public void Create(OrderDto orderDto)

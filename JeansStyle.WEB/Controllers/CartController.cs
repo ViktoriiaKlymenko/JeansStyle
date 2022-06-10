@@ -3,6 +3,7 @@ using JeansStyle.BLL.Interfaces;
 using JeansStyle.WEB.Models;
 using JeansStyle.WEB.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -13,28 +14,39 @@ namespace JeansStyle.WEB.Controllers
     public class CartController : ControllerBase
     {
         private readonly ISearchService _searchService;
+        private readonly IProductSizeService _productSizeService;
         private readonly IMapper _mapper;
-        public CartController(ISearchService searchService, IMapper mapper)
+        public CartController(ISearchService searchService, IMapper mapper, IProductSizeService productSizeService)
         {
 
             _searchService = searchService;
             _mapper = mapper;
+            _productSizeService = productSizeService;
 
         }
 
-        public async Task<string> GetData(Cart cart)
+        [HttpPost]
+        public async Task<string> GetData(List<Cart> carts)
         {
-            var product = _mapper.Map<Product>(await _searchService.GetProductById(cart.ProductId));
-            var size = _mapper.Map<Size>(_searchService.GetSizeById(cart.SizeId));
-            var productSize = _mapper.Map<ProductSize>(_searchService.GetProductSizesById(product.Id, cart.SizeId));
-            var model = new CartApiModel()
-            {
 
-                Product = product,
-                ProductSize = productSize,
-                Amount = cart.Amount,
-                TotalPrice = cart.Amount * product.Price
-            };
+            var productSizes = new List<ProductSize>();
+            var model = new List<CartApiModel>();
+            foreach (var cart in carts)
+            {
+               var productSize = _mapper.Map<ProductSize>(await _productSizeService.GetProductSizeById(cart.ProductSizeId));
+                var product = _mapper.Map<Product>(await _searchService.GetProductById(cart.ProductId));
+                var cartModel = new CartApiModel()
+                {
+
+                    Product = productSize.Product == null ? product : productSize.Product,
+                    ProductSize = productSize,
+                    Amount = cart.Amount,
+                    TotalPrice = cart.Amount * productSize.Product.Price
+                };
+                model.Add(cartModel);
+
+            }
+                
 
             var modelSerialized = JsonSerializer.Serialize(model);
 

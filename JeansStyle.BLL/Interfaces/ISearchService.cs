@@ -17,7 +17,7 @@ namespace JeansStyle.BLL.Interfaces
         ProductDto GetByIdWithReturningDto(Guid id);
         Guid GetCategoryIdByName(string name);
         SearchResponse GetAllProductsByCategoryId(Guid id);
-        List<ProductSizeDto> GetProductSizesById(Guid productId, Guid sizeId);
+        List<ProductSizeDto> GetProductSizesById(Guid productSizeId);
         List<SeasonDto> GetAllSeasons();
         List<GenderDto> GetAllGenders();
         Task<CategoryDto> GetCategoryById(Guid id);
@@ -25,5 +25,6 @@ namespace JeansStyle.BLL.Interfaces
         Task<GenderDto> GetGenderById(Guid id);
         List<SeasonDto> GetSeasonsById(List<string> ids);
         Task<ProductDto> GetProductById(Guid productId);
+        Guid GetGenderByName(string gender);
     }
 }

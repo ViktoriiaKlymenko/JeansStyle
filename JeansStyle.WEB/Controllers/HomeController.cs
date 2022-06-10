@@ -9,6 +9,7 @@ using AutoMapper;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace JeansStyle.WEB.Controllers
 {
@@ -35,7 +36,7 @@ namespace JeansStyle.WEB.Controllers
                 var products = await _searchService.GetProductsByTitleAndDescription(searchRequest.Request);
                 if (products.Products.Count == 0)
                 {
-                    ViewBag.Request = searchRequest;
+                    ViewBag.Message = searchRequest.Request;
                     return View("NotFound");
                 }
                 var productsToView = new List<ProductViewModelWithSizes>();
@@ -97,7 +98,7 @@ namespace JeansStyle.WEB.Controllers
         // }
 
         [HttpGet]
-        public ActionResult GetProductByCategory([FromQuery] string category)
+        public ActionResult GetProductByCategory([FromQuery] string category, [FromQuery] string gender)
         {
             if (ModelState.IsValid)
             {
@@ -105,6 +106,8 @@ namespace JeansStyle.WEB.Controllers
                 {
                     var categoryId = _searchService.GetCategoryIdByName(category);
                     var products = _searchService.GetAllProductsByCategoryId(categoryId).Products;
+                    var genderId = _searchService.GetGenderByName(gender);
+                    products.Where(p=>p.GenderId == genderId);
                     ViewBag.Products = products;
                     return View("GetProducts");
                 }

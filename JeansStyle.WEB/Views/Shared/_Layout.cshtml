@@ -12,16 +12,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - JeansStyle</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
-    <link rel="stylesheet" href="~/css/footer.css"/>
-    <link rel="stylesheet" href="~/css/header.css"/>
-    <link rel="stylesheet" href="~/css/carousel.css"/>
-    <link rel="stylesheet" href="~/css/dropdown.css"/>
-    <link rel="stylesheet" href="~/css/card.css"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/footer.css" />
+    <link rel="stylesheet" href="~/css/header.css" />
+    <link rel="stylesheet" href="~/css/carousel.css" />
+    <link rel="stylesheet" href="~/css/dropdown.css" />
+    <link rel="stylesheet" href="~/css/card.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
@@ -33,90 +33,102 @@
     <!-- Scripts -->
     <script defer="defer" src="~/dist/js/chunk-vendors.js"></script>
     <script defer="defer" src="~/dist/js/app.js"></script>
-    
+
 </head>
 <body>
 
-<div id="app">
-    <header>
-        <div class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container justify-content-around text-center">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">JeansStyle</a>
+    <div id="app">
+        <header>
+            <div class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container justify-content-around text-center">
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">JeansStyle</a>
 
-                <div class="d-inline-flex align-items-center">
-                    @using (Html.BeginForm("GetProducts", "Home", FormMethod.Get))
-                    {
-                        <div class="search-box d-inline-flex">
-                            <input class="search-txt" autocomplete="on" id="searchRequest" name="searchRequest.Request" placeholder="Search"/>
-                            <button class="search-btn mr-2" type="submit" href="~/Home/GetProducts/">
-                                <i class="fa fa-search fa-1x"></i>
-                            </button>
-                        </div>
-                    }
-                    
-                    <cart-component></cart-component>
+                    <div class="d-inline-flex align-items-center">
+                        @using (Html.BeginForm("GetProducts", "Home", FormMethod.Get))
+                        {
+                            <div class="search-box d-inline-flex">
+                                <input class="search-txt" autocomplete="on" id="searchRequest" name="searchRequest.Request" placeholder="Search" />
+                                <button class="search-btn mr-2" type="submit" href="~/Home/GetProducts/">
+                                    <i class="fa fa-search fa-1x"></i>
+                                </button>
+                            </div>
+                        }
+
+                        <cart-component></cart-component>
+                    </div>
                 </div>
             </div>
-        </div>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom mb-3">
-            @*  <div class="container justify-content-center">
-            <ul class="d-inline-flex justify-content-center text-center">
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="dropbtn">Women's</button>
-    
-                        <div class="dropdown-content">
-                            @foreach (var category in categories.Women)
-                            {
-                                <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category=@category> @category.Name</a>
-                            }
-    
-                        </div>
-                    </div>
-                </li>
-    
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="dropbtn">Men's</button>
-                        <div class="dropdown-content">
-                            @foreach (var category in categories.Men)
-                            {
-                                <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category=@category> @category.Name</a>
-                            }
-    
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>*@
-        </nav>
-        @* @Html.RenderPartialAsync("_PartialView",categories)*@
-    </header>
+            <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom mb-3">
+                <div class="container justify-content-center">
+                    <ul class="d-inline-flex justify-content-center text-center">
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="dropbtn">Women's</button>
+                                <div class="dropdown-content">
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Jeans" asp-route-gender="Women"> Jeans</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="T-shirt" asp-route-gender="Women"> T-shirt </a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Jacket" asp-route-gender="Women">Jacket</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Coat" asp-route-gender="Women"> Coat</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category=" Down Jacket" asp-route-gender="Women"> Down Jacket</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Sport Suit" asp-route-gender="Women"> Sport Suit</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Sweatshirt" asp-route-gender="Women"> Sweatshirt</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Shorts" asp-route-gender="Women"> Shorts </a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Pullover" asp-route-gender="Women"> Pullover</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Skirt" asp-route-gender="Women">Skirt </a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Dress" asp-route-gender="Women">Dress </a>
 
-    <div class="container bg-white">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+                                </div>
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="dropbtn">Men's</button>
+                                <div class="dropdown-content">
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Jeans" asp-route-gender="Men"> Jeans</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="T-shirt" asp-route-gender="Men"> T-shirt </a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Jacket" asp-route-gender="Men">Jacket</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Coat" asp-route-gender="Men"> Coat</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Down Jacket" asp-route-gender="Men"> Down Jacket</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Sport Suit" asp-route-gender="Men"> Sport Suit</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Sweatshirt" asp-route-gender="Men"> Sweatshirt</a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Shorts" asp-route-gender="Men"> Shorts </a>
+                                    <a asp-controller="Home" asp-action="GetProductByCategory" asp-route-category="Pullover" asp-route-gender="Men"> Pullover</a>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </header>
+
+        <div class="container bg-white">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer>
+            <div class="this-website-is-for">
+                <h4>This website is for educational purposes only</h4>
+                <p>
+                    This site displays products, that are available in our shop.
+                    Please, buy and be surprised by the high quality of it.
+                </p>
+            </div>
+            <div class="travel-technology-co">
+                <p>Clothes shop. Men's and women's wear.</p>
+                <p>Instagram: jeans_style_kr</p>
+
+                &copy; 2022 - JeansStyle - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+            </div>
+        </footer>
     </div>
 
-    <footer>
-        <div class="this-website-is-for">
-            <h4>This website is for educational purposes only</h4>
-            <p>
-                This site displays products, that are available in our shop.
-                Please, buy and be surprised by the high quality of it.
-            </p>
-        </div>
-        <div class="travel-technology-co">
-            <p>Clothes shop. Men's and women's wear.</p>
-            <p>Instagram: jeans_style_kr</p>
-
-            &copy; 2022 - JeansStyle - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-
-        </div>
-    </footer>
-</div>
-
-@await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

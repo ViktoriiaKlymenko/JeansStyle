@@ -5,28 +5,54 @@ using JeansStyle.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JeansStyle.WEB.Controllers
 {
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
+        private readonly ISearchService _searchService;
+        private readonly IProductSizeService _productSizeService;
         private readonly IMapper _mapper;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, ISearchService searchService, IMapper mapper, IProductSizeService productSizeService)
         {
             _orderService = orderService;
+            _searchService = searchService;
+            _mapper = mapper;
+            _productSizeService = productSizeService;
         }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Complete(ProductSize productSizes, UserCredentialsViewModel model)
+        public async Task<ActionResult> Create(List<Cart> carts)
+        {
+            var orderDto = new OrderDto
+            {
+                ProductSizes = new List<ProductSizeDto>(),
+                Products = new List<ProductDto>(),
+            };
+
+            foreach (var cart in carts)
+            {
+                var productSizes = _mapper.Map<Product>(await _productSizeService.GetProductSizeById(cart.ProductSizeId));
+                var product = _mapper.Map<Product>(await _searchService.GetProductById(cart.ProductId));
+              
+            }
+           
+           
+            return View("ContactCustomer");
+        }
+
+        public ActionResult Complete(List<ProductSize> productSizes, UserCredentialsViewModel model)
         {
             var products =_mapper.Map<List<ProductSizeDto>>(productSizes);
             var order = new OrderDto();
-            order.Products = products;
+            //order.Products = products;
             order.UserCredentials.FirstName = model.FirstName;
             order.UserCredentials.MiddleName = model.MiddleName;
             order.UserCredentials.LastName = model.LastName;
