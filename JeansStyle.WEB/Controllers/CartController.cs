@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JeansStyle.WEB.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CartController : ControllerBase
     {
